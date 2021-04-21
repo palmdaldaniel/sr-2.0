@@ -6,6 +6,7 @@ const ChannelProvider = (props) => {
   const [channels, setChannels] = useState(null);
   const [categories, setCategories] = useState(null);
   const [channel, setChannel] = useState(null)
+  const [schedule, setSchedule] = useState(null)
 
   useEffect(() => {
     getAllChannels();
@@ -30,11 +31,21 @@ const ChannelProvider = (props) => {
     setChannel(channelToGet)
   };
 
+  const getScheduleForChannel = async(channelId, date) => {
+      console.log(channelId);
+    let scheduleToGet = await fetch(`/api/v1/channels/schedule/${channelId}`);
+    scheduleToGet = await scheduleToGet.json()
+
+    setSchedule(scheduleToGet);
+  }
+
   const values = {
     channels,
     channel,
     categories,
+    schedule,
     getChannelById,
+    getScheduleForChannel
   };
   return (
     <ChannelContext.Provider value={values}>

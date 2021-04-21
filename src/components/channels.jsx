@@ -16,7 +16,7 @@ const Channels = () => {
       <div className={styles.channelsContainer}>
         {channels &&
           channels
-            .slice(0, 4)
+          .slice(0, 4)
             .map((channel) => <Channel key={channel.id} channel={channel} />)}
       </div>
     </div>
