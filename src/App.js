@@ -1,14 +1,14 @@
-import './App.css';
-import Home from './pages/Home'
+import "./App.css";
+import Home from "./pages/Home";
 
-
+import ChannelProvider from "./contexts/ChannelProvider";
 
 function App() {
   return (
     <div className="App">
-
-      <Home />
-    
+      <ChannelProvider>
+        <Home />
+      </ChannelProvider>
     </div>
   );
 }

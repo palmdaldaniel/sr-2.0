@@ -1,7 +1,10 @@
+import Channels from "../components/channels"
+
+
 const Home = () => {
     return (
         <div>
-           <h1> Now it begins </h1>
+           <Channels />
         </div>
       );
 }
