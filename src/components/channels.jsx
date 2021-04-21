@@ -1,8 +1,6 @@
 import { useContext } from "react";
 import { ChannelContext } from "../contexts/ChannelProvider";
 
-import Container from "react-bootstrap/Container";
-
 //css
 import styles from "./css/channel.module.css";
 

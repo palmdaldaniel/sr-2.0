@@ -1,16 +1,26 @@
 import styles from "./css/channel.module.css";
-
+import { useHistory } from "react-router-dom";
 
 const Channel = ({ channel }) => {
-  return (
-     <div className={styles.channel}>
-        <div className={styles.imgContainer}>
-            <img src={channel.image} className={styles.image}></img>
-        </div>
-        <h1> {channel.name}  </h1>
-        <p> {channel.tagline}  </p>
-    </div>  
+  const history = useHistory();
 
+  const handleClick = (channelId) => {
+    history.push(`/channels/${channelId}`);
+  };
+
+  return (
+    <div
+      className={styles.channel}
+      onClick={() => {
+        handleClick(channel.id);
+      }}
+    >
+      <div className={styles.imgContainer}>
+        <img src={channel.image} className={styles.image}></img>
+      </div>
+      <h1> {channel.name} </h1>
+      <p> {channel.tagline} </p>
+    </div>
   );
 };
 
