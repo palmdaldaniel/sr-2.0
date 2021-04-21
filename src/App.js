@@ -1,20 +1,22 @@
 import "./App.css";
 import Home from "./pages/Home";
 import ChannelPage from "./pages/ChannelPage";
-import ChannelProvider from "./contexts/ChannelProvider";
+import RadioProvider from "./contexts/RadioProvider";
 
 import { BrowserRouter, Route } from "react-router-dom";
+import ProgramsPage from "./pages/ProgramsPage";
 
 function App() {
 
   return (
     <div className="App">
-      <ChannelProvider>
+      <RadioProvider>
         <BrowserRouter>
           <Route exact path='/' component={Home} />
           <Route exact path="/channels/:id" component={ChannelPage} />
+          <Route exact path='/programs' component={ProgramsPage} />
         </BrowserRouter>
-      </ChannelProvider>
+      </RadioProvider>
     </div>
   );
 }

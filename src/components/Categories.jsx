@@ -1,10 +1,10 @@
 import { useContext } from "react";
-import { ChannelContext } from "../contexts/ChannelProvider";
+import { RadioContext } from "../contexts/RadioProvider";
 
 import styles from "./css/category.module.css";
 
 const Categories = () => {
-  const { categories } = useContext(ChannelContext);
+  const { categories } = useContext(RadioContext);
   console.log(categories);
   return (
     <div className={styles.categoryWrapper}>

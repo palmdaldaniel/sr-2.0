@@ -1,16 +1,18 @@
 import { createContext, useState, useEffect } from "react";
 
-export const ChannelContext = createContext();
+export const RadioContext = createContext();
 
-const ChannelProvider = (props) => {
+const RadioProvider = (props) => {
   const [channels, setChannels] = useState(null);
   const [categories, setCategories] = useState(null);
   const [channel, setChannel] = useState(null)
   const [schedule, setSchedule] = useState(null)
+  const [programs, setPrograms] = useState(null)
 
   useEffect(() => {
     getAllChannels();
     getAllCategories();
+    getAllPrograms()
   }, []);
 
   const getAllChannels = async () => {
@@ -39,19 +41,29 @@ const ChannelProvider = (props) => {
     setSchedule(scheduleToGet);
   }
 
+  const getAllPrograms = async () => {
+
+    let programsToGet = await fetch('/api/v1/programs');
+    programsToGet = await programsToGet.json()
+
+    setPrograms(programsToGet);
+
+  }
+
   const values = {
     channels,
     channel,
     categories,
     schedule,
+    programs,
     getChannelById,
     getScheduleForChannel
   };
   return (
-    <ChannelContext.Provider value={values}>
+    <RadioContext.Provider value={values}>
       {props.children}
-    </ChannelContext.Provider>
+    </RadioContext.Provider>
   );
 };
 
-export default ChannelProvider;
+export default RadioProvider;

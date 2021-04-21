@@ -1,5 +1,5 @@
 import { useEffect, useContext } from "react";
-import { ChannelContext } from "../contexts/ChannelProvider";
+import { RadioContext } from "../contexts/RadioProvider";
 
 const ChannelPage = (props) => {
   const {
@@ -7,7 +7,7 @@ const ChannelPage = (props) => {
     getScheduleForChannel,
     channel,
     schedule,
-  } = useContext(ChannelContext);
+  } = useContext(RadioContext);
   const { id } = props.match.params;
 
   console.log(schedule);
