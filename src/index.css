@@ -14,8 +14,15 @@ code {
     monospace;
 }
 
-
 .homepageWrapper {
-  width: 800px;
+  width: 1000px;
   margin: 0 auto;
+
+} 
+
+
+@media only screen and (min-width: 600px) {
+  .homepageWrapper {
+    display: flex;
+  } 
 }

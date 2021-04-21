@@ -1,21 +1,32 @@
-.channelsWrapper {
-    display: flex;
-    justify-content: center;
-
+.channelsContainer {
+  margin: 2rem;
 }
-
 .channel {
-    max-width: 200px;
-    margin: 2em;
-
+    margin: 2rem;
 }
-
-.imgContainer {
-    width: 200px;
-}
-
 .image {
+    margin-bottom: 2vh;
     width:100%
-    
+  
 }
 
+@media only screen and (min-width: 600px) {
+
+    .channelsContainer {
+        display: flex;
+        justify-content: center;
+    
+    }
+
+    .channel {
+        max-width: 200px;
+        margin: 2em;
+    
+    }
+    
+    .imgContainer {
+        width: 150px;
+    }
+    
+
+  }
