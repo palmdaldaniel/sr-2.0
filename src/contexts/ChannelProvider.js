@@ -4,9 +4,11 @@ export const ChannelContext = createContext()
 
 const ChannelProvider = (props) => {
     const [channels, setChannels]  = useState(null)
+    const [categories, setCategories] = useState(null)
    
     useEffect(() => {
         getAllChannels()
+        getAllCategories()
     },[])
 
 
@@ -16,10 +18,18 @@ const ChannelProvider = (props) => {
         setChannels(getChannels.channels)
     }
 
+    const getAllCategories = async () => {
+        let getCategories = await fetch('http://localhost:3000/api/v1/categories')
+        getCategories = await getCategories.json()
+        setCategories(getCategories.programcategories);
+        
+    }
+
 
 
     const values = {
-        channels
+        channels,
+        categories
 
     };
     return ( 

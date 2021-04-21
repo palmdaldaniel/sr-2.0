@@ -1,0 +1,8 @@
+.categoryWrapper {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.category {
+    margin: 10px
+}

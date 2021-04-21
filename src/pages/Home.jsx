@@ -1,10 +1,12 @@
+import Categories from "../components/Categories"
 import Channels from "../components/channels"
 
 
 const Home = () => {
     return (
-        <div>
+        <div className="homepageWrapper">
            <Channels />
+           <Categories />
         </div>
       );
 }
