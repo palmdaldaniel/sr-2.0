@@ -4,18 +4,25 @@ import { RadioContext } from "../contexts/RadioProvider";
 import styles from "./css/category.module.css";
 
 const Categories = () => {
-  const { categories } = useContext(RadioContext);
-  console.log(categories);
+  const { categories, filterByCategory, getAllPrograms } = useContext(RadioContext);
+
+  const handleClick = (id) => {
+    filterByCategory(id)
+  }
+
+
   return (
+
     <div className={styles.categoryWrapper}>
-      <h1> Teman </h1>
       {categories &&
         categories.map((category) => (
-          <div className={styles.category} key={category.id}>
+          <div className={styles.category} key={category.id} onClick={() => handleClick(category.id)}>
             <p>{category.name}</p>
           </div>
         ))}
+        <button onClick={()=> getAllPrograms()}>Clear result</button>
     </div>
+   
   );
 };
 

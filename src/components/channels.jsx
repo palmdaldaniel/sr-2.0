@@ -11,7 +11,7 @@ const Channels = () => {
   const { channels } = useContext(RadioContext);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [channelsPerPage] = useState(10);
+  const [channelsPerPage] = useState(9);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
