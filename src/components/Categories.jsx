@@ -19,22 +19,23 @@ const Categories = () => {
   };
 
   return (
-    <div className={styles.categoryWrapper}>
-      {categories &&
-        categories.map((category) => (
-          <div
-            className={styles.category}
-            key={category.id}
-            onClick={() => handleClick(category.id, category.name)}
-          >
-            <p>{category.name}</p>
-          </div>
-        ))}
-      <button onClick={() => clearResult()}>Clear result</button>
-      <>
-        <p>{label} </p>
-      </>
-    </div>
+    <>
+      <div className={styles.categoryWrapper}>
+        {categories &&
+          categories.map((category) => (
+            <div
+              className={styles.category}
+              key={category.id}
+              onClick={() => handleClick(category.id, category.name)}
+            >
+              <p>{category.name}</p>
+            </div>
+          ))}
+        <button onClick={() => clearResult()}>Rensa</button>
+      </div>
+
+      <h5>Valt filter: {label} </h5>
+    </>
   );
 };
 

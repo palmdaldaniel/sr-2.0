@@ -11,7 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
-    "express-sessions": "^1.0.6",
+    "express-session": "^1.17.1",
     "node-fetch": "^2.6.1",
     "sqlite3": "^5.0.2"
   }

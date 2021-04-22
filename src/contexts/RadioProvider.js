@@ -10,6 +10,7 @@ const RadioProvider = (props) => {
   const [programs, setPrograms] = useState(null);
   const [filteredPrograms, setFilteredPrograms] = useState(null);
 
+
   useEffect(() => {
     getAllChannels();
     getAllCategories();
@@ -56,13 +57,12 @@ const RadioProvider = (props) => {
   };
 
   const getScheduleByDate = async (channelId, date) => {
-  
     let scheduleByDate = await fetch(`/api/v1/channels/schedule/${channelId}/${date}`)
     scheduleByDate = await scheduleByDate.json()
-    console.log(scheduleByDate);
-
     
-
+    // when filtered on date, the state of schedule will change
+    setSchedule(scheduleByDate);
+  
   }
 
   const values = {

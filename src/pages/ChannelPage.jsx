@@ -42,17 +42,17 @@ const ChannelPage = (props) => {
         <h1> Dagens sändningar </h1>
       </div>
 
-      <h1>Filtrera på datum: <DatePicker selected={startDate} onChange={date => setStartDate(date)} /> </h1>
-      
+      <h1>Filtrera på datum: <DatePicker placeholderText='Filtrera på datum' selected={startDate} onChange={date => setStartDate(date)} /> </h1>
+      <button onClick={() =>  getScheduleForChannel(id)}> Dagens sändningar </button>
 
       {schedule &&
         schedule.map((s) => (
           <div style={{border: '1px solid black', marginBottom: '2vh', padding: '1rem'}}>
             <p> {s.title} </p>
-            <p>{s.starttimeutc} | {s.endtimeutc} </p>
+            <p> Börjar: {s.starttimeutc} | Slutar: {s.endtimeutc} </p>
             <p> {s.description} </p>
           </div>
-        ))}x
+        ))}
     </>
   );
 };
