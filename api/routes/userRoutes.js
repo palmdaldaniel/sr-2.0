@@ -7,6 +7,7 @@ const userController = require('../controllers/userController.js')
 router.get('/whoami', userController.whoami)
 router.post('/login', userController.login)
 router.get('/logout', userController.logout)
+router.post('/register', userController.registerUser)
 
 
 
