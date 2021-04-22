@@ -35,10 +35,8 @@ const RadioProvider = (props) => {
   };
 
   const getScheduleForChannel = async (channelId, date) => {
-    console.log(channelId);
     let scheduleToGet = await fetch(`/api/v1/channels/schedule/${channelId}`);
     scheduleToGet = await scheduleToGet.json();
-
     setSchedule(scheduleToGet);
   };
 
@@ -57,6 +55,16 @@ const RadioProvider = (props) => {
     setFilteredPrograms(filteredPrograms); 
   };
 
+  const getScheduleByDate = async (channelId, date) => {
+  
+    let scheduleByDate = await fetch(`/api/v1/channels/schedule/${channelId}/${date}`)
+    scheduleByDate = await scheduleByDate.json()
+    console.log(scheduleByDate);
+
+    
+
+  }
+
   const values = {
     channels,
     channel,
@@ -67,7 +75,8 @@ const RadioProvider = (props) => {
     getChannelById,
     getScheduleForChannel,
     filterByCategory,
-    getAllPrograms
+    getAllPrograms,
+    getScheduleByDate
   };
   return (
     <RadioContext.Provider value={values}>
