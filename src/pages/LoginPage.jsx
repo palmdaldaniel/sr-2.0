@@ -1,33 +1,41 @@
-import useForm from "../hook/useForm";
+import { useContext, useState } from "react";
+import { useHistory } from 'react-router-dom'
+import { UserContext } from "../contexts/UserProvider";
+import useForm from "../hooks/useForm.js";
 import styles from "./css/LoginPage.module.css";
 
 const LoginPage = () => {
-  const [values, handleChange] = useForm({ email: "", password: "" });
+  const history = useHistory()
+  const { loginUser } = useContext(UserContext);
+  const [values, handleChange] = useForm({ email: '', password: '' });
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
     let userInfo = {
-        email: values.email,
-        password: values. password
-    }
- 
-    // you need to reset valyes after registration
+      email: values.email,
+      password: values.password,
+    };
+    loginUser(userInfo);
 
+    history.push('/')
+
+    // you need to reset valyes after log in
   };
 
   return (
     <div className={styles.loginwrapper}>
       <div className={styles.formwrapper}>
         <form onSubmit={handleSubmit}>
-          <input type="text" name="email" onChange={handleChange} />
-          <input type="password" name="password" onChange={handleChange} />
+          <input name="email" value={values.email} placeholder="Email..." onChange={handleChange} />
           <input
-            type="submit"
-            name=""
-            id=""
-            value="Logga in"
-            onSubmit={handleSubmit}
+            name="password"
+            type="password"
+            placeholder="Password"
+            onChange={handleChange}
           />
+          <input type="submit" name="" id="" onSubmit={handleSubmit} />
+          <p>Register?</p>
         </form>
       </div>
     </div>

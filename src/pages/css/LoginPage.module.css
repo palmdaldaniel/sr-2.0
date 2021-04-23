@@ -24,6 +24,6 @@ input {
   border: none;
   min-width: 300px;
   padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 5px;
+  margin-bottom: 1.1rem;
+  border-radius: 2px;
 }

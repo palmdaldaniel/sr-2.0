@@ -1,7 +1,7 @@
 const sqlite3 = require("sqlite3");
 const Encrypt = require("../Encrypt");
 const path = require("path");
-const { get } = require("../routes/channelRoutes");
+
 
 const db = new sqlite3.Database(path.join(__dirname, "../SR_DB.db"));
 
@@ -10,10 +10,11 @@ const whoami = (req, res) => {
   res.json(req.session.user || null);
 };
 
-const login = (req, res) => {
+const login = (req, res) => {  
+  
   const { email, password } = req.body;
   let query = /* SQL */ `SELECT * FROM users WHERE email = $email`;
-  let params = {
+   let params = {
     $email: email,
   };
 
@@ -25,15 +26,18 @@ const login = (req, res) => {
       return;
     }
     console.log(user);
+    //delete passwaord before session starts
+    delete user.password
     req.session.user = user;
 
     res.json({ success: "logged in", username: user.username });
   });
+   
 };
 
 const logout = (req, res) => {
   delete req.session.user;
-  res.json({ succes: "User is logged out" });
+  res.json({ succes: "User is logged out" }); 
 };
 
 const registerUser = (req, res) => {
