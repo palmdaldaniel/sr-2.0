@@ -20,7 +20,7 @@ const getChannelById = async (req, res) => {
 
 const getChannelSchedule = async (req, res) => { 
   let channelSchedule = await fetch(
-    `http://api.sr.se/api/v2/scheduledepisodes?${json}&${paginationFalse}&channelId=${req.params.channelId}&date=${req.query.date}`
+    `http://api.sr.se/api/v2/scheduledepisodes?${json}&${paginationFalse}&channelId=${req.params.channelId}`
   );
   channelSchedule = await channelSchedule.json();
   channelSchedule.schedule = channelSchedule.schedule.map((p) => {

@@ -1,0 +1,29 @@
+.loginwrapper {
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.formwrapper {
+  height: 300px;
+  background-color: rgba(0, 0, 0, 0.475);
+  border-radius: 5px;
+
+  display: flex;
+  align-items: center;
+  padding: 70px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  border: none;
+  min-width: 300px;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
