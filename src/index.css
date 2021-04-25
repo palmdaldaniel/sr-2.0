@@ -1,4 +1,4 @@
-body {
+ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -14,26 +14,9 @@ code {
     monospace;
 }
 
-.homepageWrapper {
-  width: 1000px;
+body { 
+  max-width: 800px;
   margin: 0 auto;
-
-} 
-
-.Navbar {
-  display: flex;
-  justify-content: center;
-}
-
-.Navbar a {
-  font-size: 2rem;
-  margin: 5px;
-  color: black;
-}
-
-.Navbar a:hover {
-  color: black;
-  text-decoration: none;
 }
 
 
@@ -42,4 +25,5 @@ code {
     display: flex;
   } 
 }
+
 

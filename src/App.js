@@ -9,13 +9,14 @@ import ProgramsPage from "./pages/ProgramsPage";
 import Navbar from "./components/Navbar";
 import LoginPage from "./pages/LoginPage";
 
+
 function App() {
   return (
     <div className="App">
       <RadioProvider>
         <UserProvider>
           <BrowserRouter>
-            <Navbar />
+           <Navbar />
             <Route exact path="/" component={Home} />
             <Route exact path="/channels/:id" component={ChannelPage} />
             <Route exact path="/programs" component={ProgramsPage} />

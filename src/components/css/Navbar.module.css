@@ -1,0 +1,39 @@
+.navbarWrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 1.5em;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.dropdown {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    position: relative;
+}
+
+.hamburgermenu {
+    cursor: pointer;
+}
+
+
+
+
+.DropdownContainer {
+
+    position: absolute;
+    top: 2em;
+    background: white;
+    border: solid 1px black;
+    padding: 10px;
+    width: 100px;
+    height: 100px;
+    text-align: end;
+
+}

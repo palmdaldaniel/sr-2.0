@@ -14,7 +14,7 @@ const UserProvider = (props) => {
     let loggedInUser = await fetch('/api/v1/users/whoami');
     loggedInUser  = await loggedInUser.json()
     console.log(loggedInUser);
-    setUser(loggedInUser.username)
+ //   setUser(loggedInUser.username)
   };
 
   const loginUser = async (user) => {
@@ -26,7 +26,6 @@ const UserProvider = (props) => {
         body: JSON.stringify(user),
       });
       userToLogin = await userToLogin.json()
-      console.log(userToLogin);
       setUser(userToLogin)
   };
 
