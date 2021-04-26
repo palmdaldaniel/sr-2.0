@@ -37,7 +37,7 @@ const Navbar = () => {
   return (
     <div className={styles.navbarWrapper}    >
       <div className={styles.navbar}>
-        <Link to="/"> SR-2.0 </Link>
+        <Link to="/"><span> SR-2.0  </span> </Link>
 
         <div className={styles.dropdown} ref={node}>
           <div
