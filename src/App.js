@@ -9,6 +9,7 @@ import ProgramsPage from "./pages/ProgramsPage";
 import Navbar from "./components/Navbar";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
+import Favorites from "./pages/Favorites";
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
             <Route exact path="/programs" component={ProgramsPage} />
             <Route exact path="/login" component={LoginPage} />
             <Route exact path="/register" component={RegisterPage} />
+            <Route exact path="/favorites" component={Favorites} />
           </BrowserRouter>
         </UserProvider>
       </RadioProvider>
