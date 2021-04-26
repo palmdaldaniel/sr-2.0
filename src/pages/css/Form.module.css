@@ -1,14 +1,15 @@
-.loginwrapper {
+.formWrapper {
   height: 70vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
+
 }
 
-.formwrapper {
+.formContainer {
   height: 300px;
-  background-color: rgba(0, 0, 0, 0.475);
-  border-radius: 5px;
+  background-color: rgb(255, 255, 255);
 
   display: flex;
   align-items: center;
@@ -21,7 +22,7 @@ form {
 }
 
 input {
-  border: none;
+  border: 1px solid rgba(0, 0, 0, 0.372);
   min-width: 300px;
   padding: 10px;
   margin-bottom: 1.1rem;

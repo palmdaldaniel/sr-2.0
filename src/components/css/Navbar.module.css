@@ -38,14 +38,14 @@ span {
   right: -24px;
   background: rgb(255, 255, 255);
   width: 375px;
-  height: 200px;
+  height: 300px;
   border-radius: 10px;
 }
 
 .DropdownContainer a {
   display: block;
 
-  padding: 10px;
+  padding: 10px 25px;
 }
 .DropdownContainer a:hover {
   background: rgb(240, 242, 245);

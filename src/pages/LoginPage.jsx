@@ -1,8 +1,9 @@
 import { useContext, useState } from "react";
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 import { UserContext } from "../contexts/UserProvider";
 import useForm from "../hooks/useForm.js";
-import styles from "./css/LoginPage.module.css";
+import styles from "./css/Form.module.css";
+
 
 const LoginPage = () => {
   const history = useHistory()
@@ -24,8 +25,8 @@ const LoginPage = () => {
   };
 
   return (
-    <div className={styles.loginwrapper}>
-      <div className={styles.formwrapper}>
+    <div className={styles.formWrapper}>
+      <div className={styles.formContainer}>
         <form onSubmit={handleSubmit}>
           <input name="email" value={values.email} placeholder="Email..." onChange={handleChange} />
           <input
@@ -34,8 +35,8 @@ const LoginPage = () => {
             placeholder="Password"
             onChange={handleChange}
           />
-          <input type="submit" name="" id="" onSubmit={handleSubmit} />
-          <p>Register?</p>
+          <input type="submit" value="Logga in" onSubmit={handleSubmit} />
+          <Link to='/register'> Register?  </Link>
         </form>
       </div>
     </div>

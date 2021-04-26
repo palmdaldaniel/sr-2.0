@@ -8,6 +8,7 @@ import { BrowserRouter, Route } from "react-router-dom";
 import ProgramsPage from "./pages/ProgramsPage";
 import Navbar from "./components/Navbar";
 import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
             <Route exact path="/channels/:id" component={ChannelPage} />
             <Route exact path="/programs" component={ProgramsPage} />
             <Route exact path="/login" component={LoginPage} />
+            <Route exact path="/register" component={RegisterPage} />
           </BrowserRouter>
         </UserProvider>
       </RadioProvider>

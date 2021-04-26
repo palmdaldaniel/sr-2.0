@@ -1,13 +1,29 @@
 import styles from "./css/Navbar.module.css";
 
 import { Link } from "react-router-dom";
+import { useContext, useEffect } from 'react'
+import { UserContext } from "../contexts/UserProvider";
 
 const Dropdown = ({ toggleMenu }) => {
+
+const { logoutUser, user }  = useContext(UserContext)
+
+    const handleClick = () => {
+        logoutUser()
+        toggleMenu()
+    }
+
   return (
-    <div className={styles.DropdownContainer} >
+    <div className={styles.DropdownContainer}>
       <Link to="/" onClick={toggleMenu}> Hem </Link>
       <Link to="/programs" onClick={toggleMenu}> Program </Link>
-      <Link to="/login" onClick={toggleMenu}> Logga in </Link>
+      <Link to="/favorites" onClick={toggleMenu}> Favoriter </Link>
+
+       
+      {user ?  <Link to="/" onClick={handleClick}  > Logga ut </Link> 
+            : 
+      <Link to="/login" onClick={toggleMenu}> Logga in</Link>
+      }
     </div>
   );
 };

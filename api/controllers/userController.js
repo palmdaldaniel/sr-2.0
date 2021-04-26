@@ -41,6 +41,7 @@ const logout = (req, res) => {
 };
 
 const registerUser = (req, res) => {
+  console.log(req.body);
   const { email, username, password } = req.body;
 
   // first check if someone has that email

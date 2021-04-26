@@ -7,6 +7,7 @@ import Dropdown from "./Dropdown";
 
 import { useState, useRef, useEffect } from "react";
 
+
 const Navbar = () => {
   const node = useRef();
   const [isOpen, setIsOpen] = useState(false);
@@ -26,7 +27,7 @@ const Navbar = () => {
     };
   }, []);
 
-  const toggleMenu = (e) => {
+  const toggleMenu = () => {
     if (isOpen) {
       setIsOpen(false);
       return;
@@ -35,14 +36,15 @@ const Navbar = () => {
   };
 
   return (
-    <div className={styles.navbarWrapper}    >
+    <div className={styles.navbarWrapper}>
       <div className={styles.navbar}>
-        <Link to="/"><span> SR-2.0  </span> </Link>
+        <Link to="/">
+          <span> SR-2.0 </span>{" "}
+        </Link>
 
         <div className={styles.dropdown} ref={node}>
           <div
             className={styles.hamburgermenu}
-         
             onClick={toggleMenu}
             style={{ color: isOpen && "grey" }}
           >
