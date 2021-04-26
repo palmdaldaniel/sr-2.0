@@ -5,7 +5,7 @@ import Categories from "./Categories";
 import Program from "./Program";
 
 const ProgramsList = () => {
-  const { programs, filteredPrograms } = useContext(RadioContext);
+  const { filteredPrograms } = useContext(RadioContext);
 
 
   return (
