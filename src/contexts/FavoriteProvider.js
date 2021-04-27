@@ -26,18 +26,26 @@ const FavoriteProvider = (props) => {
     channelToSave = await channelToSave.json();
   };
 
-  const saveFavoriteProgam = async (program) => {
+  const saveFavoriteProgram = async (program) => {
 
-    console.log(program);
+    let programToSave = await fetch("/api/v1/favorites/programs", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(program),
+    });
+    programToSave = await programToSave.json();
+  };
 
 
 
-  }
+
 
   const values = {
     saveFavoriteChannel,
     getFavoriteChannels,
-    saveFavoriteProgam,
+    saveFavoriteProgram,
     favorites
   };
 

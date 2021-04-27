@@ -46,7 +46,34 @@ const saveFavoriteChannel = async (req, res) => {
   });
 };
 
+
+const saveFavoriteProgram = async (req, res) => {
+  console.log(req.body);
+  const { programname, userid, programid  } = req.body
+  
+    let query = /* SQL */ `INSERT INTO programs (programname, userid, programid)
+    VALUES ($programname, $userid, $programid)`
+
+    let params = {
+      $programname: programname,
+      $userid: userid,
+      $programid: programid
+
+    }
+
+    db.run(query, params, function (err) {
+      if (err) {
+        console.log(err);
+        res.status(404).json({ err: err });
+        return;
+      }
+      res.json({ success: "Saved program succesfully" });
+    });
+  };
+  
+
 module.exports = {
   getFavoriteChannels,
   saveFavoriteChannel,
+  saveFavoriteProgram
 };
