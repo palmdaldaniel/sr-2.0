@@ -1,6 +1,7 @@
 import { useEffect, useContext, useState } from "react";
 import { RadioContext } from "../contexts/RadioProvider";
 import { UserContext } from "../contexts/UserProvider";
+import { FavoriteContext } from '../contexts/FavoriteProvider'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
@@ -14,6 +15,9 @@ const ChannelPage = (props) => {
   const [isFavorite, setIsFavorite] = useState(false);
 
   const { user } = useContext(UserContext);
+  const { saveFavoriteChannel } = useContext(FavoriteContext);
+
+ 
 
   const {
     getChannelById,
@@ -38,17 +42,26 @@ const ChannelPage = (props) => {
   // only fires when startdate changes.
   useEffect(() => {
     if (!startDate) return;
+
     let formattedDate = startDate.toLocaleString().slice(0, 10);
+
     getScheduleByDate(id, formattedDate);
   }, [startDate]);
 
-  const toggleFavorite = () => {
+  const selectFavorite = () => {
     if (isFavorite) {
       setIsFavorite(false);
       return;
     }
-
     setIsFavorite(true);
+
+    let favariteChannel = {
+      channelId: id,
+      channelName: channel.channel.name,
+      userId: user.userid
+    }
+
+    saveFavoriteChannel(favariteChannel)
   };
   return (
     <>
@@ -61,7 +74,7 @@ const ChannelPage = (props) => {
               size="3x"
               icon={faHeart}
               style={{ color: isFavorite ? "black" : "grey" }}
-              onClick={toggleFavorite}
+              onClick={selectFavorite}
             />
           )}
         </div>

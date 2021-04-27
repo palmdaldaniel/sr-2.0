@@ -4,6 +4,8 @@ export const UserContext = createContext();
 
 const UserProvider = (props) => {
   const [user, setUser] = useState(undefined);
+  console.log(user);
+  
   useEffect(() => {
     whoami();
   }, []);
@@ -25,6 +27,7 @@ const UserProvider = (props) => {
       body: JSON.stringify(user),
     });
     userToLogin = await userToLogin.json();
+    
     setUser(userToLogin);
   };
 

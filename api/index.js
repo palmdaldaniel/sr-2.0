@@ -12,6 +12,9 @@ const programRoutes = require('./routes/programRoutes.js')
 const userRoutes = require('./routes/userRoutes')
 const userPrefix = ('/api/v1/users')
 
+// favoite route
+const favoriteRoutes =  require('./routes/favoriteRoutes')
+const favoritePrefix = ('/api/v1/favorites')
 const port = 3001;
 
 
@@ -34,6 +37,7 @@ app.use('/api/v1/channels', channelRoutes)
 app.use('/api/v1/categories', categoryRoutes)
 app.use('/api/v1/programs', programRoutes)
 app.use(userPrefix, userRoutes)
+app.use(favoritePrefix, favoriteRoutes)
 
 app.listen(port, (err) => {
     if(err) {

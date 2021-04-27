@@ -30,7 +30,7 @@ const login = (req, res) => {
     delete user.password
     req.session.user = user;
 
-    res.json({ success: "logged in", username: user.username });
+    res.json({ success: "logged in", username: user.username, userid: user.id });
   });
    
 };
@@ -79,6 +79,8 @@ const registerUser = (req, res) => {
     }
   });
 };
+
+
 
 module.exports = {
   whoami,

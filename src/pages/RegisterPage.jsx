@@ -7,24 +7,23 @@ import useForm from "../hooks/useForm";
 
 const RegisterPage = () => {
   const history = useHistory();
-  const { registerUser  } = useContext(UserContext);
-  const [values, handleChange] = useForm({ email: "", password: "", username: "" });
+  const { registerUser } = useContext(UserContext);
+  const [values, handleChange] = useForm({
+    email: "",
+    password: "",
+    username: "",
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
     let userInfo = {
       email: values.email,
       password: values.password,
-      username: values.username
+      username: values.username,
     };
+    registerUser(userInfo);
 
-    registerUser(userInfo)
-
-
-
-
-
-    // you need to find a way to reset valyes after log in
+    // you need to find a way to reset valyus after log in
   };
 
   return (
@@ -39,7 +38,7 @@ const RegisterPage = () => {
           />
           <input
             name="email"
-            value={values.email}
+            values={values.email}
             placeholder="Email..."
             onChange={handleChange}
           />
@@ -49,7 +48,7 @@ const RegisterPage = () => {
             placeholder="Password"
             onChange={handleChange}
           />
-          <input type="submit" name="" id="" onSubmit={handleSubmit} />
+          <input type="submit" onSubmit={handleSubmit} />
         </form>
       </div>
     </div>
