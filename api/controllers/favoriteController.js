@@ -24,6 +24,31 @@ const getFavoriteChannels = async (req, res) => {
   });
 };
 
+
+const getFavoritePrograms = (req, res) => {
+
+  console.log('req: ', req.params);
+  
+  const { id } = req.params
+  let query = /* SQL */ `SELECT * FROM programs WHERE userid = $userid`;
+  let params = {
+    $userid: id,
+  };
+
+  db.all(query, params, (err, favoritePrograms) => {
+    if (err) {
+      res.status(404).json({ err: err });
+      return;
+    }
+    res.json(favoritePrograms);
+  });
+
+
+ 
+
+}
+
+
 const saveFavoriteChannel = async (req, res) => {
   const { channelId, channelName, userId } = req.body;
   
@@ -48,7 +73,7 @@ const saveFavoriteChannel = async (req, res) => {
 
 
 const saveFavoriteProgram = async (req, res) => {
-  console.log(req.body);
+
   const { programname, userid, programid  } = req.body
   
     let query = /* SQL */ `INSERT INTO programs (programname, userid, programid)
@@ -74,6 +99,7 @@ const saveFavoriteProgram = async (req, res) => {
 
 module.exports = {
   getFavoriteChannels,
+  getFavoritePrograms,
   saveFavoriteChannel,
   saveFavoriteProgram
 };

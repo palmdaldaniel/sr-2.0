@@ -26,12 +26,12 @@ const login = (req, res) => {
         .json({ err: err, message: "Email or password is incorrect" });
       return;
     }
-    console.log(user);
+    console.log('user: ', user);
     //delete passwaord before session starts
     delete user.password
     req.session.user = user;
 
-    res.json({ success: "logged in", username: user.username, userid: user.id });
+    res.json({ success: "logged in", username: user.username, userid: user.userid });
   });
    
 };

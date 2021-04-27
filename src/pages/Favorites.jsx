@@ -6,32 +6,52 @@ import { RadioContext } from "../contexts/RadioProvider";
 
 const Favorites = () => {
   const { user } = useContext(UserContext);
-  const { getFavoriteChannels, favorites } = useContext(FavoriteContext);
-  const { channels } = useContext(RadioContext);
+  console.log(user);
+  const {
+    getFavoriteChannels,
+    favoritePrograms,
+    favoriteChannels,
+    getFavoritePrograms,
+  } = useContext(FavoriteContext);
+  const { channels, filteredPrograms } = useContext(RadioContext);
 
   useEffect(() => {
+    console.log(user);
     if (!user) return;
-    getFavoriteChannels(user.id);
-   
+    getFavoriteChannels(user.userid);
+    getFavoritePrograms(user.userid);
   }, []);
 
   useEffect(() => {
-    if(favorites) {
+    if (favoriteChannels && favoritePrograms) {
       filterChannels();
+      filterPrograms();
     }
-  }, [favorites])
+  }, [favoriteChannels, favoritePrograms]);
 
   const filterChannels = () => {
-    if (!channels) return;
-    if (!favorites) return;
-    console.log("kanaler", channels);
-    console.log("favoriter", favorites);
-/* 
-   let favoritesId = favorites.map(favorite => favorite.channelid)
-   let filteredChannels = channels.filter(channel => favoritesId.includes(channel.id))
-    console.log('favorites: ', filteredChannels); */
+    if (channels) {
+      let favoriteChannelsId = favoriteChannels.map((fc) => fc.channelid);
+      let filteredChannels = channels.filter((channel) =>
+        favoriteChannelsId.includes(channel.id)
+      );
+      console.log("favorites: ", filteredChannels);
+    }
+  };
 
-  
+  const filterPrograms = () => {
+    if (filteredPrograms) {
+      const { programs } = filteredPrograms;
+
+      let favoriteProgramsId = favoritePrograms.map(
+        (program) => program.programid
+      );
+
+      let favoriteFilteredPrograms = programs.filter((program) =>
+        favoriteProgramsId.includes(program.id)
+      );
+      console.log("finished: ", favoriteFilteredPrograms);
+    }
   };
 
   return (
