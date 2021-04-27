@@ -6,7 +6,7 @@ const paginationFalse = "pagination=false";
 
 const path = require("path");
 
-const db = new sqlite3.Database(path.join(__dirname, "../SR_DB.db"));
+const db = new sqlite3.Database(path.join(__dirname, "../../SR_DB.db"));
 
 const getFavoriteChannels = async (req, res) => {
   const { id } = req.params;
@@ -26,6 +26,7 @@ const getFavoriteChannels = async (req, res) => {
 
 const saveFavoriteChannel = async (req, res) => {
   const { channelId, channelName, userId } = req.body;
+  
 
   let query = /* SQL */ `INSERT INTO channels (channelname, userid, channelid)
                           VALUES ($channelname, $userid, $channelid)`;

@@ -15,6 +15,7 @@ const ChannelPage = (props) => {
   const [isFavorite, setIsFavorite] = useState(false);
 
   const { user } = useContext(UserContext);
+  console.log(user);
   const { saveFavoriteChannel } = useContext(FavoriteContext);
 
  
@@ -58,7 +59,7 @@ const ChannelPage = (props) => {
     let favariteChannel = {
       channelId: id,
       channelName: channel.channel.name,
-      userId: user.userid
+      userId: user.id
     }
 
     saveFavoriteChannel(favariteChannel)

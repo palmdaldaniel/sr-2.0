@@ -26,10 +26,10 @@ const Favorites = () => {
     if (!favorites) return;
     console.log("kanaler", channels);
     console.log("favoriter", favorites);
-
+/* 
    let favoritesId = favorites.map(favorite => favorite.channelid)
    let filteredChannels = channels.filter(channel => favoritesId.includes(channel.id))
-    console.log('favorites: ', filteredChannels);
+    console.log('favorites: ', filteredChannels); */
 
   
   };

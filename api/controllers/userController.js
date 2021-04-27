@@ -3,7 +3,8 @@ const Encrypt = require("../Encrypt");
 const path = require("path");
 
 
-const db = new sqlite3.Database(path.join(__dirname, "../SR_DB.db"));
+const db = new sqlite3.Database(path.join(__dirname, "../../SR_DB.db"));
+
 
 const whoami = (req, res) => {
   console.log(req.session.user);
@@ -70,7 +71,7 @@ const registerUser = (req, res) => {
 
       db.run(query, params, function (err) {
         if (err) {
-          console.log('inside run', );
+          console.log('inside run', err );
           res.status(404).json({ err: err });
           return;
         }

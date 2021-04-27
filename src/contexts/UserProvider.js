@@ -15,7 +15,7 @@ const UserProvider = (props) => {
     loggedInUser = await loggedInUser.json();
     // if no user is logged in - don't update userstate
     if (!loggedInUser) return;
-    
+    console.log(loggedInUser);
     setUser(loggedInUser);
   };
 
@@ -28,6 +28,7 @@ const UserProvider = (props) => {
       body: JSON.stringify(user),
     });
     userToLogin = await userToLogin.json();
+    console.log(userToLogin);
     
     setUser(userToLogin);
   };
