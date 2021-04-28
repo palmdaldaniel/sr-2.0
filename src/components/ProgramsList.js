@@ -1,21 +1,13 @@
-import { useContext } from "react";
-import { RadioContext } from "../contexts/RadioProvider";
-import Categories from "./Categories";
-
 import Program from "./Program";
 
-const ProgramsList = () => {
-  const { filteredPrograms } = useContext(RadioContext);
-
-
+const ProgramsList = ({programs}) => {
+ 
   return (
     <div>
-    <Categories />
-      {filteredPrograms &&
-       filteredPrograms.programs.map((program, i) => (
+      {programs &&
+       programs.map((program, i) => (
           <Program data={program} key={i} />
         ))}
-      ; 
     </div>
   );
 };

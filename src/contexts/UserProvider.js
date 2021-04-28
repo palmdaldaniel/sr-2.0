@@ -6,6 +6,7 @@ const UserProvider = (props) => {
   const [user, setUser] = useState(undefined);
   const [favoriteChannels, setfavoriteChannels] = useState(undefined);
   const [favoritePrograms, setFavoritePrograms] = useState(undefined);
+  console.log(favoritePrograms);
 
   useEffect(() => {
     whoami();

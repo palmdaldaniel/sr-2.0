@@ -1,9 +1,18 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../contexts/UserProvider";
 
 import { RadioContext } from "../contexts/RadioProvider";
+import Channels from '../components/channels'
+import ProgramsList from '../components/ProgramsList'
+
 
 const Favorites = () => {
+  const [filteredFavoriteChannels, setFilteredFavoriteChannels] = useState(null)
+  const [filteredFavoritePrograms, setFilteredFavoritePrograms] = useState(null)
+  console.log(filteredFavoritePrograms);
+
+ 
+
   const {
     user,
     getFavoriteChannels,
@@ -12,7 +21,9 @@ const Favorites = () => {
     getFavoritePrograms,
   } = useContext(UserContext);
 
-  const { channels, filteredPrograms } = useContext(RadioContext);
+  const { channels, programs } = useContext(RadioContext);
+
+  
 
   useEffect(() => {
     console.log(user);
@@ -35,14 +46,14 @@ const Favorites = () => {
       let filteredChannels = channels.filter((channel) =>
         favoriteChannelsId.includes(channel.id)
       );
-      console.log("favorites: ", filteredChannels);
+ 
+
+      setFilteredFavoriteChannels(filteredChannels)
     }
   };
 
   const filterPrograms = () => {
-    if (filteredPrograms) {
-      const { programs } = filteredPrograms;
-
+    if (programs) {
       let favoriteProgramsId = favoritePrograms.map(
         (program) => program.programid
       );
@@ -50,7 +61,10 @@ const Favorites = () => {
       let favoriteFilteredPrograms = programs.filter((program) =>
         favoriteProgramsId.includes(program.id)
       );
-      console.log("finished: ", favoriteFilteredPrograms);
+
+      console.log('inside filterPrograms', favoriteFilteredPrograms);
+     
+      setFilteredFavoritePrograms(favoriteFilteredPrograms)
     }
   };
 
@@ -59,6 +73,10 @@ const Favorites = () => {
       {user ? (
         <div>
           <h1> Welcome {user.username} </h1>
+          FavoritKanaler
+          <Channels channels={filteredFavoriteChannels} />
+          Favoritprogram
+          <ProgramsList  programs={filteredFavoritePrograms }/>
         </div>
       ) : (
         <h1> Pls log in to see your favorites </h1>

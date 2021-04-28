@@ -1,13 +1,17 @@
 import { useContext } from 'react'
 import ProgramsList from '../components/ProgramsList';
+import Categories from '../components/Categories'
 import { RadioContext } from '../contexts/RadioProvider';
 
 
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
+
+
 const ProgramsPage = () => {
 
+const { programs } = useContext(RadioContext)
 
     const { pathname } = useLocation();
 
@@ -17,7 +21,8 @@ const ProgramsPage = () => {
 
     return ( 
         <div className="PogramsPage">
-            <ProgramsList />
+          <Categories />
+            <ProgramsList programs={programs} />
         </div>
      );
 }

@@ -8,8 +8,6 @@ const RadioProvider = (props) => {
   const [channel, setChannel] = useState(null);
   const [schedule, setSchedule] = useState(null);
   const [programs, setPrograms] = useState(null);
-  const [filteredPrograms, setFilteredPrograms] = useState(null);
-
 
   useEffect(() => {
     getAllChannels();
@@ -47,23 +45,27 @@ const RadioProvider = (props) => {
 
     //setPrograms(programsToGet);
     // load programs
-    setFilteredPrograms(programsToGet)
+
+    const { programs } = programsToGet;
+    setPrograms(programs);
   };
 
-  const filterByCategory= async (id) => {
-    let filteredPrograms = await fetch(`/api/v1/categories/${id}`)
+  const filterByCategory = async (id) => {
+    let filteredPrograms = await fetch(`/api/v1/categories/${id}`);
     filteredPrograms = await filteredPrograms.json();
-    setFilteredPrograms(filteredPrograms); 
+    const { programs } = filteredPrograms;
+    setPrograms(programs);
   };
 
   const getScheduleByDate = async (channelId, date) => {
-    let scheduleByDate = await fetch(`/api/v1/channels/schedule/${channelId}/${date}`)
-    scheduleByDate = await scheduleByDate.json()
-    
+    let scheduleByDate = await fetch(
+      `/api/v1/channels/schedule/${channelId}/${date}`
+    );
+    scheduleByDate = await scheduleByDate.json();
+
     // when filtered on date, the state of schedule will change
     setSchedule(scheduleByDate);
-  
-  }
+  };
 
   const values = {
     channels,
@@ -71,12 +73,11 @@ const RadioProvider = (props) => {
     categories,
     schedule,
     programs,
-    filteredPrograms,
     getChannelById,
     getScheduleForChannel,
     filterByCategory,
     getAllPrograms,
-    getScheduleByDate
+    getScheduleByDate,
   };
   return (
     <RadioContext.Provider value={values}>
