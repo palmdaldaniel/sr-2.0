@@ -1,18 +1,17 @@
 import { useContext, useEffect } from "react";
-
 import { UserContext } from "../contexts/UserProvider";
-import { FavoriteContext } from "../contexts/FavoriteProvider";
+
 import { RadioContext } from "../contexts/RadioProvider";
 
 const Favorites = () => {
-  const { user } = useContext(UserContext);
-  console.log(user);
   const {
+    user,
     getFavoriteChannels,
     favoritePrograms,
     favoriteChannels,
     getFavoritePrograms,
-  } = useContext(FavoriteContext);
+  } = useContext(UserContext);
+
   const { channels, filteredPrograms } = useContext(RadioContext);
 
   useEffect(() => {
@@ -24,6 +23,7 @@ const Favorites = () => {
 
   useEffect(() => {
     if (favoriteChannels && favoritePrograms) {
+     
       filterChannels();
       filterPrograms();
     }

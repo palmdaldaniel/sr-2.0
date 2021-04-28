@@ -5,13 +5,13 @@ import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
 import { useState, useContext } from "react";
 import { UserContext } from "../contexts/UserProvider";
-import { FavoriteContext } from "../contexts/FavoriteProvider";
+
 
 const Program = (props) => {
   // use data to get channel info
 
-  const { user } = useContext(UserContext);
-  const { saveFavoriteProgram } = useContext(FavoriteContext);
+  const { user, saveFavoriteProgram } = useContext(UserContext);
+  
 
   const { name, description, broadcastinfo } = props.data;
 
