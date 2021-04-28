@@ -16,10 +16,6 @@ const ChannelPage = (props) => {
 
   const { user, saveFavoriteChannel } = useContext(UserContext);
 
-  
-
- 
-
   const {
     getChannelById,
     getScheduleForChannel,
@@ -56,10 +52,12 @@ const ChannelPage = (props) => {
     }
     setIsFavorite(true);
 
+    console.log(user);
+
     let favariteChannel = {
       channelId: id,
       channelName: channel.channel.name,
-      userId: user.id
+      userId: user.userid
     }
 
     saveFavoriteChannel(favariteChannel)

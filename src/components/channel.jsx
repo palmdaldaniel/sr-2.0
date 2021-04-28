@@ -1,10 +1,15 @@
 import styles from "./css/channel.module.css";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
 const Channel = ({ channel }) => {
   const history = useHistory();
+  const location = useLocation()
 
   const handleClick = (channelId) => {
+
+    // här ska jag gör något annat 
+    if(location.pathname === '/favorites') return
+
     history.push(`/channels/${channelId}`);
   };
 
