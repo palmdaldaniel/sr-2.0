@@ -1,9 +1,11 @@
 import Channels from "../components/channels";
 
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { RadioContext } from "../contexts/RadioProvider";
 
 const Home = () => {
+  const { channels } = useContext(RadioContext)
   const { pathname } = useLocation();
 
 
@@ -14,7 +16,7 @@ const Home = () => {
 
   return (
     <div className="homepageWrapper">
-      <Channels />
+      <Channels channels={channels} />
     </div>
   );
 };

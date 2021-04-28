@@ -1,7 +1,7 @@
 import { useEffect, useContext, useState } from "react";
 import { RadioContext } from "../contexts/RadioProvider";
 import { UserContext } from "../contexts/UserProvider";
-import { FavoriteContext } from '../contexts/FavoriteProvider'
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
@@ -14,9 +14,9 @@ const ChannelPage = (props) => {
   const [startDate, setStartDate] = useState(null);
   const [isFavorite, setIsFavorite] = useState(false);
 
-  const { user } = useContext(UserContext);
-  console.log(user);
-  const { saveFavoriteChannel } = useContext(FavoriteContext);
+  const { user, saveFavoriteChannel } = useContext(UserContext);
+
+  
 
  
 

@@ -7,8 +7,9 @@ import styles from "./css/channel.module.css";
 import Channel from "./channel";
 import Pagination from "./Pagination";
 
-const Channels = () => {
-  const { channels } = useContext(RadioContext);
+const Channels = ({channels}) => {
+  
+  //const { channels } = useContext(RadioContext);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [channelsPerPage] = useState(9);
