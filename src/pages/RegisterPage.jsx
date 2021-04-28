@@ -23,6 +23,8 @@ const RegisterPage = () => {
     };
     registerUser(userInfo);
 
+    history.push('/login')
+
     // you need to find a way to reset valyus after log in
   };
 

@@ -8,6 +8,7 @@ const RadioProvider = (props) => {
   const [channel, setChannel] = useState(null);
   const [schedule, setSchedule] = useState(null);
   const [programs, setPrograms] = useState(null);
+  
 
   useEffect(() => {
     getAllChannels();
@@ -73,6 +74,7 @@ const RadioProvider = (props) => {
     categories,
     schedule,
     programs,
+    setSchedule,
     getChannelById,
     getScheduleForChannel,
     filterByCategory,

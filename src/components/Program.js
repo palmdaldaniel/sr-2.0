@@ -26,11 +26,11 @@ const Program = (props) => {
     setIsFavorite(true);
   };
 
-  const saveFavorite  = (program, id) => {
+  const saveFavorite  = (program, userid) => {
     let programToSave = {
       programname: program.name,
       programid: program.id,
-      userid: id
+      userid: userid
     }
     saveFavoriteProgram(programToSave)
 
@@ -48,7 +48,7 @@ const Program = (props) => {
         <div
           className={styles.icon}
           style={{ color: isFavorite ? "green" : "black" }}
-          onClick={() => saveFavorite(props.data, user.id)}
+          onClick={() => saveFavorite(props.data, user.userid)}
         >
           <FontAwesomeIcon icon={faHeart} size="3x" />
         </div>

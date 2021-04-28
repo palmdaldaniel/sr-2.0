@@ -6,8 +6,7 @@ const UserProvider = (props) => {
   const [user, setUser] = useState(undefined);
   const [favoriteChannels, setfavoriteChannels] = useState(undefined);
   const [favoritePrograms, setFavoritePrograms] = useState(undefined);
-  console.log(favoritePrograms);
-
+  
   useEffect(() => {
     whoami();
   }, []);
@@ -56,19 +55,22 @@ const UserProvider = (props) => {
   //  functionality for users favorite pograms and channels
 
   const getFavoriteChannels = async (userid) => {
+    console.log(' get favoroite channels ',  userid);
     let favoriteChannelsToGet = await fetch(
       `/api/v1/favorites/channels/${userid}`
     );
     favoriteChannelsToGet = await favoriteChannelsToGet.json();
+    console.log('data 2:', favoriteChannelsToGet);
     setfavoriteChannels(favoriteChannelsToGet);
   };
 
   const getFavoritePrograms = async (userid) => {
-    console.log(userid);
+    console.log('get favorite programs: ',userid);
     let favoriteProgramsToGet = await fetch(
       `/api/v1/favorites/programs/${userid}`
     );
     favoriteProgramsToGet = await favoriteProgramsToGet.json();
+    console.log('data: ', favoriteProgramsToGet);
     setFavoritePrograms(favoriteProgramsToGet);
   };
 

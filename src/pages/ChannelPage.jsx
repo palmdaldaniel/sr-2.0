@@ -5,10 +5,10 @@ import { UserContext } from "../contexts/UserProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
-
 import { useLocation } from "react-router-dom";
 
 import DatePicker from "react-datepicker";
+import Schedule from "../components/Schedule";
 
 const ChannelPage = (props) => {
   const [startDate, setStartDate] = useState(null);
@@ -57,10 +57,10 @@ const ChannelPage = (props) => {
     let favariteChannel = {
       channelId: id,
       channelName: channel.channel.name,
-      userId: user.userid
-    }
+      userId: user.userid,
+    };
 
-    saveFavoriteChannel(favariteChannel)
+    saveFavoriteChannel(favariteChannel);
   };
   return (
     <>
@@ -93,23 +93,7 @@ const ChannelPage = (props) => {
       <button onClick={() => getScheduleForChannel(id)}>
         Dagens sändningar
       </button>
-
-      {schedule &&
-        schedule.map((s) => (
-          <div
-            style={{
-              border: "1px solid black",
-              marginBottom: "2vh",
-              padding: "1rem",
-            }}
-          >
-            <p> {s.title} </p>
-            <p>
-              Börjar: {s.starttimeutc} | Slutar: {s.endtimeutc}{" "}
-            </p>
-            <p> {s.description} </p>
-          </div>
-        ))}
+      {schedule && <Schedule schedule={schedule} />}
     </>
   );
 };

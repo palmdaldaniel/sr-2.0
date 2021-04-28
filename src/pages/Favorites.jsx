@@ -2,16 +2,20 @@ import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../contexts/UserProvider";
 
 import { RadioContext } from "../contexts/RadioProvider";
-import Channels from '../components/channels'
-import ProgramsList from '../components/ProgramsList'
-
+import Channels from "../components/channels";
+import ProgramsList from "../components/ProgramsList";
+import Schedule from "../components/Schedule";
+import FavoriteChannelBroadCast from "../components/FavoriteChannelBroadcast";
 
 const Favorites = () => {
-  const [filteredFavoriteChannels, setFilteredFavoriteChannels] = useState(null)
-  const [filteredFavoritePrograms, setFilteredFavoritePrograms] = useState(null)
-  console.log(filteredFavoritePrograms);
+  const [filteredFavoriteChannels, setFilteredFavoriteChannels] = useState(
+    null
+  );
+  const [filteredFavoritePrograms, setFilteredFavoritePrograms] = useState(
+    null
+  );
 
- 
+  const [newSchedule, setNewSchedule] = useState(null)
 
   const {
     user,
@@ -21,20 +25,20 @@ const Favorites = () => {
     getFavoritePrograms,
   } = useContext(UserContext);
 
-  const { channels, programs } = useContext(RadioContext);
+  const { channels, programs, schedule } = useContext(RadioContext);
 
-  
+ 
+
 
   useEffect(() => {
-    console.log(user);
-    if (!user) return;
-    getFavoriteChannels(user.userid);
-    getFavoritePrograms(user.userid);
-  }, []);
+    if (user) {
+      getFavoriteChannels(user.userid);
+      getFavoritePrograms(user.userid);
+    }
+  }, [user]);
 
   useEffect(() => {
     if (favoriteChannels && favoritePrograms) {
-     
       filterChannels();
       filterPrograms();
     }
@@ -46,26 +50,25 @@ const Favorites = () => {
       let filteredChannels = channels.filter((channel) =>
         favoriteChannelsId.includes(channel.id)
       );
- 
 
-      setFilteredFavoriteChannels(filteredChannels)
+      setFilteredFavoriteChannels(filteredChannels);
     }
   };
 
   const filterPrograms = () => {
-    if (programs) {
-      let favoriteProgramsId = favoritePrograms.map(
-        (program) => program.programid
-      );
+    let favoriteProgramsId = favoritePrograms.map(
+      (program) => program.programid
+    );
 
-      let favoriteFilteredPrograms = programs.filter((program) =>
-        favoriteProgramsId.includes(program.id)
-      );
+      if(programs) {
+        let favoriteFilteredPrograms = programs.filter((program) =>
+          favoriteProgramsId.includes(program.id)
+        );
 
-      console.log('inside filterPrograms', favoriteFilteredPrograms);
-     
-      setFilteredFavoritePrograms(favoriteFilteredPrograms)
-    }
+        console.log("inside filterPrograms", favoriteFilteredPrograms);
+        setFilteredFavoritePrograms(favoriteFilteredPrograms);
+      }
+
   };
 
   return (
@@ -75,9 +78,17 @@ const Favorites = () => {
           <h1> Welcome {user.username} </h1>
           FavoritKanaler
           <Channels channels={filteredFavoriteChannels} />
+
+          {/* jag vill bara att den här ska ladda när jag trycker på en kanal */}
+
+          <FavoriteChannelBroadCast  schedule={schedule}  />
+         
+        
+
           Favoritprogram
-          <ProgramsList  programs={filteredFavoritePrograms }/>
-        </div>
+          <ProgramsList programs={filteredFavoritePrograms} />
+         
+                </div>
       ) : (
         <h1> Pls log in to see your favorites </h1>
       )}
