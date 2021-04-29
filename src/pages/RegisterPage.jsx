@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../contexts/UserProvider";
 import useForm from "../hooks/useForm";
+import Helpbox from "../components/Helpbox";
 
 const RegisterPage = () => {
   const history = useHistory();
@@ -21,10 +22,8 @@ const RegisterPage = () => {
     setStatus(404)
     setErrorMessage(undefined)
   } 
- 
 
   }, [status])
-
 
   const [values, handleChange] = useForm({
     email: "",
@@ -33,6 +32,9 @@ const RegisterPage = () => {
   });
 
   // different feedbackMessages is shown depending on what the user tries to submit.
+
+
+  
   
 
   // might need to do some checks here.
@@ -44,8 +46,29 @@ const RegisterPage = () => {
         password: values.password,
         username: values.username,
       };   
-      registerUser(userInfo)
+      validateUser(userInfo)
+    
     }
+
+
+    const validateUser = (user) => {
+      const strongPassword = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})");
+      const passwordIsValid = strongPassword.test(user.password) 
+      const emailIsValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(user.email)
+    
+        if(passwordIsValid && emailIsValid) {
+          console.log('go ahead and submit');
+          registerUser(user)
+        } else {
+          setShow(true)
+          setTimeout(hideFeedbackMessage, 6500)
+        }
+      } 
+
+      const hideFeedbackMessage = () => {
+        setShow(false)
+      }
+       
 
 
 
@@ -53,7 +76,8 @@ const RegisterPage = () => {
     <div className={styles.formWrapper}>
       <div className={styles.formContainer}>
         <form onSubmit={handleSubmit}>
-          <p>{errorMessage}</p>
+          <p>{errorMessage}</p> 
+         { show && <Helpbox /> }
 
           <input
             name="username"

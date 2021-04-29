@@ -27,12 +27,14 @@ const LoginPage = () => {
       email: values.email,
       password: values.password,
     };
+ 
     loginUser(userInfo);
-
-    // history.push('/')
-
+   
     // you need to reset valyes after log in
   };
+
+
+
 
   return (
     <div className={styles.formWrapper}>
