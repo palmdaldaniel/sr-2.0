@@ -15,7 +15,7 @@ const LoginPage = () => {
  useEffect(() => {
   if(status === 200) {
     history.push('/')
-    setStatus(404)
+    //setStatus(404)
     setErrorMessage(undefined)
   } 
 

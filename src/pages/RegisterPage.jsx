@@ -9,21 +9,23 @@ import Helpbox from "../components/Helpbox";
 const RegisterPage = () => {
   const history = useHistory();
   const [show, setShow] = useState(false);
-  
- 
-  const { registerUser, errorMessage, setErrorMessage, status, setStatus } = useContext(
-    UserContext
-  );
+
+  const {
+    registerUser,
+    errorMessage,
+    setErrorMessage,
+    status,
+    setStatus,
+  } = useContext(UserContext);
   console.log(status);
 
- useEffect(() => {
-  if(status === 200) {
-    history.push('/login')
-    setStatus(404)
-    setErrorMessage(undefined)
-  } 
-
-  }, [status])
+  useEffect(() => {
+    if (status === 200) {
+      history.push("/login");
+      setStatus(404);
+      setErrorMessage(undefined);
+    }
+  }, [status]);
 
   const [values, handleChange] = useForm({
     email: "",
@@ -33,52 +35,54 @@ const RegisterPage = () => {
 
   // different feedbackMessages is shown depending on what the user tries to submit.
 
-
-  
-  
-
   // might need to do some checks here.
 
   const handleSubmit = (e) => {
     e.preventDefault();
-      let userInfo = {
-        email: values.email,
-        password: values.password,
-        username: values.username,
-      };   
-      validateUser(userInfo)
+    let userInfo = {
+      email: values.email,
+      password: values.password,
+      username: values.username,
+    };
+    validateUser(userInfo);
+  };
+
+  // check if these are good or bad credintals
+  const validateUser = (user) => {
+
+     // (?=.*[a-z])	The string must contain at least 1 lowercase alphabetical character
+    // (?=.*[A-Z])	The string must contain at least 1 uppercase alphabetical character
+    // (?=.*[0-9])	The string must contain at least 1 numeric character
+    // (?=.*[!@#$%^&*])	The string must contain at least one special character, but we are escaping reserved RegEx characters to avoid conflict
+    // (?=.{8,})	The string must be eight characters or longer
     
+    const strongPassword = new RegExp(
+      "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})"
+    );
+    const passwordIsValid = strongPassword.test(user.password);
+
+      // check for basic emailpatterns. valid email could be daniel@gmail.com
+      // test will show false if you submit ex: daniel@@gmal.com
+
+    const emailIsValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(user.email);
+
+    if (passwordIsValid && emailIsValid) {
+      registerUser(user);
+    } else {
+      setShow(true);
+      setTimeout(hideFeedbackMessage, 6500);
     }
-
-
-    const validateUser = (user) => {
-      const strongPassword = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})");
-      const passwordIsValid = strongPassword.test(user.password) 
-      const emailIsValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(user.email)
-    
-        if(passwordIsValid && emailIsValid) {
-          console.log('go ahead and submit');
-          registerUser(user)
-        } else {
-          setShow(true)
-          setTimeout(hideFeedbackMessage, 6500)
-        }
-      } 
-
-      const hideFeedbackMessage = () => {
-        setShow(false)
-      }
-       
-
-
+  };
+  const hideFeedbackMessage = () => {
+    setShow(false);
+  };
 
   return (
     <div className={styles.formWrapper}>
       <div className={styles.formContainer}>
         <form onSubmit={handleSubmit}>
-          <p>{errorMessage}</p> 
-         { show && <Helpbox /> }
-
+          <p>{errorMessage}</p>
+          {show && <Helpbox />}
           <input
             name="username"
             value={values.username}
@@ -87,7 +91,6 @@ const RegisterPage = () => {
             required
           />
           <input
-           
             name="email"
             values={values.email}
             placeholder="Email..."

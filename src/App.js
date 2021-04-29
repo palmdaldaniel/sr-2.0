@@ -6,13 +6,18 @@ import UserProvider from "./contexts/UserProvider";
 
 
 import { BrowserRouter, Route } from "react-router-dom";
+
+
 import ProgramsPage from "./pages/ProgramsPage";
 import Navbar from "./components/Navbar";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import Favorites from "./pages/Favorites";
 
+
 function App() {
+ 
+
   return (
     <div className="App">
       <RadioProvider>
