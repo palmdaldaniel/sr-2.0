@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { useHistory, Link } from "react-router-dom";
 import { UserContext } from "../contexts/UserProvider";
 import useForm from "../hooks/useForm.js";
@@ -6,9 +6,20 @@ import styles from "./css/Form.module.css";
 
 const LoginPage = () => {
   const history = useHistory();
-  const { loginUser, errorMessage } = useContext(UserContext);
+  const { loginUser, errorMessage, setErrorMessage, status, setStatus } = useContext(UserContext);
   const [values, handleChange] = useForm({ email: "", password: "" });
   console.log(errorMessage);
+
+
+
+ useEffect(() => {
+  if(status === 200) {
+    history.push('/')
+    setStatus(404)
+    setErrorMessage(undefined)
+  } 
+
+  }, [status])
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -27,9 +38,9 @@ const LoginPage = () => {
     <div className={styles.formWrapper}>
       <div className={styles.formContainer}>
         <form onSubmit={handleSubmit}>
-          <ul>
-            <li style={{listStyle: 'none'}}>{errorMessage}</li>
-          </ul>
+
+          <p>  {errorMessage} </p>
+        
           <input
             name="email"
             value={values.email}

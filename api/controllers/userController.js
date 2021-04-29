@@ -26,7 +26,7 @@ const login = (req, res) => {
       console.log("inside if");
       res
         .status(404)
-        .json({ err: err, message: "Email or password is incorrect" });
+        .json({ err: err, message: "Mailadress eller lösenord är felaktigt" });
       return;
     } else if (user.email === email && user.password === hashedPassword) {
       console.log("It is a match, go a head an log in");
@@ -49,7 +49,7 @@ const logout = (req, res) => {
 };
 
 const registerUser = (req, res) => {
-  console.log(req.body);
+
   const { email, username, password } = req.body;
 
   // check if password is strong.
@@ -57,7 +57,6 @@ const registerUser = (req, res) => {
 
   // check if email is valid. 
   const validemail = utils.emailValidator(email)
-  console.log(validemail);
   
 
   // first check if someone has that email
@@ -70,14 +69,14 @@ const registerUser = (req, res) => {
 
   db.get(query, params, (err, result) => {
     if (result) {
-      res.status(404).json({ err: err, failed: "This email already exists" });
+      res.status(404).json({ err: err, failed: "Vald mailadress finns redan" });
       return;
       // check if password is strong enough
     } else if(!validemail) {
-      res.status(404).json({ failed: "Email is not strong enough" });
+      res.status(404).json({ failed: "Inte en giltig mailadress" });
       return;
     } else if (!passwordIsStrong) {
-      res.status(404).json({ failed: "Password is not strong enough" });
+      res.status(404).json({ failed: "Välj ett säkrare lösenord" });
       return;
     } else {
       // email does not exist and password is strong so go ahead and run this code
