@@ -4,6 +4,7 @@ export const UserContext = createContext();
 
 const UserProvider = (props) => {
   const [user, setUser] = useState(undefined);
+  const [isAuth, setIsAuth] = useState(false)
 
   // kom ihåg att resetta den här efter varje gång.
   const [errorMessage, setErrorMessage] = useState(undefined)
@@ -17,11 +18,13 @@ const UserProvider = (props) => {
   }, []);
 
   const whoami = async () => {
+    
     let loggedInUser = await fetch("/api/v1/users/whoami");
     loggedInUser = await loggedInUser.json();
     // if user is logged in, update userState from who am i function
     if (loggedInUser) {
       setUser(loggedInUser);
+      setIsAuth(true)
     }
   };
 
@@ -45,6 +48,7 @@ const UserProvider = (props) => {
       userToLogin = await userToLogin.json();
       setStatus(200)
       setUser(userToLogin);
+      setIsAuth(true)
     }
 
   };
@@ -55,6 +59,7 @@ const UserProvider = (props) => {
 
     // set user back to undefiend after user is logged out
     setUser(undefined);
+    setIsAuth(false)
   };
 
   const registerUser = async (user) => {
@@ -132,6 +137,7 @@ const UserProvider = (props) => {
     user,
     errorMessage,
     status,
+    isAuth,
     setStatus,
     setErrorMessage,
     loginUser,
