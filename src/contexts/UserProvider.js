@@ -4,6 +4,7 @@ export const UserContext = createContext();
 
 const UserProvider = (props) => {
   const [user, setUser] = useState(undefined);
+  const [errorMessage, setErrorMessage] = useState(undefined)
   const [favoriteChannels, setfavoriteChannels] = useState(undefined);
   const [favoritePrograms, setFavoritePrograms] = useState(undefined);
   
@@ -21,6 +22,7 @@ const UserProvider = (props) => {
   };
 
   const loginUser = async (user) => {
+    
     let userToLogin = await fetch("/api/v1/users/login", {
       method: "POST",
       headers: {
@@ -28,10 +30,19 @@ const UserProvider = (props) => {
       },
       body: JSON.stringify(user),
     });
-    userToLogin = await userToLogin.json();
-    console.log(userToLogin);
 
-    setUser(userToLogin);
+    // responds is sent from backend depending if the log in was successfull or not
+
+    if(userToLogin.status === 404) {
+      userToLogin = await userToLogin.json();
+     
+      setErrorMessage(userToLogin.message)
+    } else if(userToLogin.status === 200) {
+      userToLogin = await userToLogin.json();
+     
+      setUser(userToLogin);
+    }
+
   };
 
   const logoutUser = async () => {
@@ -49,7 +60,10 @@ const UserProvider = (props) => {
       },
       body: JSON.stringify(user),
     });
+
+    console.log(userToRegister);
     userToRegister = await userToRegister.json();
+    console.log(userToRegister);
   };
 
   //  functionality for users favorite pograms and channels
@@ -100,6 +114,7 @@ const UserProvider = (props) => {
 
   const values = {
     user,
+    errorMessage,
     loginUser,
     logoutUser,
     registerUser,

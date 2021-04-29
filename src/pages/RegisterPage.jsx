@@ -16,6 +16,7 @@ const RegisterPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     let userInfo = {
       email: values.email,
       password: values.password,
@@ -23,7 +24,8 @@ const RegisterPage = () => {
     };
     registerUser(userInfo);
 
-    history.push('/login')
+
+    // history.push('/login')
 
     // you need to find a way to reset valyus after log in
   };
@@ -32,23 +34,34 @@ const RegisterPage = () => {
     <div className={styles.formWrapper}>
       <div className={styles.formContainer}>
         <form onSubmit={handleSubmit}>
+          <ul>
+            <p>Ditt lösenord ska innehålla:</p>
+            <li> Minst 8 tecken långt </li>
+            <li> Innehålla ett specieltecken </li>
+            <li> Innehålla en siffra </li>
+            <li> Stora och små bokstäver </li>
+          </ul>
           <input
             name="username"
             value={values.username}
             placeholder="Username"
             onChange={handleChange}
+            required
           />
           <input
+          type="email"
             name="email"
             values={values.email}
             placeholder="Email..."
             onChange={handleChange}
+            
           />
           <input
             name="password"
             type="password"
             placeholder="Password"
             onChange={handleChange}
+            required
           />
           <input type="submit" onSubmit={handleSubmit} />
         </form>
