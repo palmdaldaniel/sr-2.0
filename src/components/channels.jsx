@@ -10,7 +10,7 @@ import Pagination from "./Pagination";
 const Channels = ({channels}) => {
   
   const [currentPage, setCurrentPage] = useState(1);
-  const [channelsPerPage] = useState(9);
+  const [channelsPerPage] = useState(8);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
@@ -25,19 +25,18 @@ const Channels = ({channels}) => {
 
     content = (
       <>
-        <hr />
-        <Pagination
-          paginate={paginate}
-          totalChannels={channels.length}
-          channelsPerPage={channelsPerPage}
-        />
-        Kanaler
         <div className={styles.channelsContainer}>
+      
           {currentChannels &&
             currentChannels.map((channel) => (
               <Channel key={channel.id} channel={channel} />
             ))}
         </div>
+        <Pagination
+          paginate={paginate}
+          totalChannels={channels.length}
+          channelsPerPage={channelsPerPage}
+        />
       </>
     );
   }

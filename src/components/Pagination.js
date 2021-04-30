@@ -1,3 +1,6 @@
+import styles from '../pages/css/HomePage.module.css'
+
+
 const Pagination = ({ paginate, totalChannels, channelsPerPage }) => {
   const pageNumbers = [];
 
@@ -5,16 +8,14 @@ const Pagination = ({ paginate, totalChannels, channelsPerPage }) => {
     pageNumbers.push(i);
   }
 
+
+
+
   return (
-    <div className="pagination">
-      <ul className="pagination">
+    <div className={styles.paginationWrapper}>
+      <ul className={styles.paginationContent}>
         {pageNumbers.map((number) => (
           <li
-            style={{
-              marginLeft: "10px",
-              fontSize: "1.5rem",
-              cursor: "pointer",
-            }}
             key={number}
             onClick={() => paginate(number)}
           >

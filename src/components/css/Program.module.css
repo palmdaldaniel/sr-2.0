@@ -1,12 +1,32 @@
+.programslist {
+  display: flex;
+  justify-content: center;
+}
+
 .programWrapper {
-  border: 1px solid black;
-  margin: 2em;
+  border-left: 1px solid rgb(0, 0, 0, 0.084);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.084);
+  margin: 1em;
   padding: 1em;
+  max-width: 700px;
 
   display: flex;
   justify-content: space-between;
 }
+.content {
+  flex-basis: 85%;
+}
 
 .icon {
-  margin-top: 1em;
+  align-self: flex-start;
+  cursor: pointer;
+}
+
+.icon:active {
+  color: rgba(0, 0, 0, 0.082);
+}
+
+.programWrapper:hover {
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.084);
 }

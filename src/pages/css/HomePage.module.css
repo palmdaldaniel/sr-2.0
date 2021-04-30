@@ -1,0 +1,26 @@
+.paginationWrapper {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.paginationContent {
+display: flex;
+}
+
+
+li {
+    font-size: x-large;
+    list-style: none;
+    padding: 5px 15px;
+    margin: 10px;
+    cursor: pointer;
+
+}
+
+li:hover {
+    border-radius: 5px;
+    background: rgba(0, 0, 0, 0.071);
+
+}
+

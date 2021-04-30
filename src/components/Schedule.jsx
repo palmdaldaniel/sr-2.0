@@ -1,17 +1,12 @@
+import styles from '../pages/css/ChannelPage.module.css'
 
 const Schedule = ({ schedule }) => {
   return (
-    <div className="schedule">
-      {schedule && 
-        schedule.map((s) => (
-          <div
-            style={{
-              border: "1px solid black",
-              marginBottom: "2vh",
-              padding: "1rem",
-            }}
-          >
-            <p> {s.title} </p>
+    <div className={styles.schedule}>
+      {schedule &&
+        schedule.map((s, i) => (
+          <div key={i} className={styles.scheduleInfo}>
+            <h3> {s.title} </h3>
             <p>
               Börjar: {s.starttimeutc} | Slutar: {s.endtimeutc}
             </p>

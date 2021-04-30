@@ -1,16 +1,30 @@
 .categoryWrapper {
   margin: 2rem;
+  display: flex;
+  justify-content: center;
   }
 
+.container {
+  width: 700px;
+  display:flex;
+  flex-wrap: wrap;
+}
+
 .category {
-  margin: 1rem;
-  padding: 1rem;
+  margin: 0.5em;
+  padding: 0.7em;
   cursor: pointer;
-  border: 0.5px solid rgba(0, 0, 0, 0.297);
-  border-radius: 5px;
+  border-radius: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  background: white;
+}
+
+.paragraph {
+  font-size: 10px;
+  font-weight: 700;
 }
 
 
@@ -20,6 +34,27 @@
   color: white;
 
 }
+
+.filtertext span {
+  font-weight: 500;
+}
+ 
+
+ .filterinfo {
+   text-align: center;
+ }
+
+ .filtertext {
+   margin-bottom: 2vh;
+ }
+
+ .filterinfo button {
+   padding: 15px;
+   cursor: pointer;
+   
+ }
+
+ 
 
 
 @media only screen and (min-width: 600px) {

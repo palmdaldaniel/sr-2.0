@@ -1,5 +1,5 @@
 import "./App.css";
-import Home from "./pages/Home";
+import HomePage from "./pages/HomePage";
 import ChannelPage from "./pages/ChannelPage";
 import RadioProvider from "./contexts/RadioProvider";
 import UserProvider from "./contexts/UserProvider";
@@ -15,6 +15,7 @@ import RegisterPage from "./pages/RegisterPage";
 import Favorites from "./pages/Favorites";
 import ProtectedRoute from "./components/ProtectedRoute";
 
+
 function App() {
   return (
     <div className="App">
@@ -23,7 +24,7 @@ function App() {
           <BrowserRouter>
             <Navbar />
 
-            <Route exact path="/" component={Home} />
+            <Route exact path="/" component={HomePage} />
             <Route exact path="/channels/:id" component={ChannelPage} />
             <Route exact path="/programs" component={ProgramsPage} />
             <Route exact path="/login" component={LoginPage} />

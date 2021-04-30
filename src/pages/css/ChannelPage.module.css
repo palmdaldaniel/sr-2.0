@@ -1,0 +1,99 @@
+.channelwrapper {
+  margin: 50px auto;
+  max-width: 800px;
+}
+
+.content {
+  margin: 30px;
+}
+
+.schedule {
+  width: 400px;
+  margin: 10px;
+}
+
+.imgContainer {
+  width: 300px;
+  margin-bottom: 10px;
+}
+
+.channelInfo {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 10px auto;
+}
+
+img {
+  width: 100%;
+}
+
+.icon {
+  margin: 10px auto;
+  align-self: flex-start;
+  cursor: pointer;
+}
+
+.icon:active {
+  color: rgba(0, 0, 0, 0.098);
+}
+
+p {
+ /*  text-align: justify; */
+  line-height: 1.5em;
+}
+
+.controller {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.controller button {
+  margin-bottom: 10px;
+}
+
+.scheduleInfo {
+  margin-bottom: 2vh;
+
+  border-left: 1px solid rgb(0, 0, 0, 0.084);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.084);
+}
+
+.scheduleInfo p,.scheduleInfo
+h3 {
+  padding: 5px;
+}
+
+.scheduleInfo:hover {
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.084);
+}
+
+@media only screen and (min-width: 600px) {
+  .channelInfo {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .content {
+    border-bottom: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .info {
+    /* border-bottom: 1px solid black; */
+    margin-bottom: 10px;
+    margin-left: 10px;
+    max-width: 400px;
+    align-self: flex-end;
+  }
+
+  .icon {
+    align-self: flex-start;
+  }
+}

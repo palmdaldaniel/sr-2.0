@@ -39,7 +39,7 @@ const Navbar = () => {
     <div className={styles.navbarWrapper}>
       <div className={styles.navbar}>
         <Link to="/">
-          <span> SR-2.0 </span>{" "}
+          <span> SR-2.0 </span>
         </Link>
 
         <div className={styles.dropdown} ref={node}>

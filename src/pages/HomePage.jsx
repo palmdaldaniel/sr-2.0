@@ -6,11 +6,10 @@ import { RadioContext } from "../contexts/RadioProvider";
 import { UserContext} from "../contexts/UserProvider";
 import UserFeedback from "../components/UserFeedback";
 
-const Home = () => {
+const HomePage = () => {
   const { channels } = useContext(RadioContext)
   const { pathname } = useLocation();
   const { status, setStatus, user } = useContext(UserContext)
-  console.log(user);
 
   useEffect(()=> {
     if(status === 200) {
@@ -34,10 +33,11 @@ const Home = () => {
     { status === 200 &&
       <UserFeedback   username={user.username}/>
     }
+        <h1 style={{textAlign: 'center', margin: '20px 0' }}> Kanaler </h1>
       <Channels channels={channels} />
     </div>
   
   );
 };
 
-export default Home;
+export default HomePage;

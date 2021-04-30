@@ -10,9 +10,11 @@ import { useLocation } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import Schedule from "../components/Schedule";
 
+import styles from "./css/ChannelPage.module.css";
+
 const ChannelPage = (props) => {
   const [startDate, setStartDate] = useState(null);
-  const [isFavorite, setIsFavorite] = useState(false);
+ // const [isFavorite, setIsFavorite] = useState(true);
 
   const { user, saveFavoriteChannel } = useContext(UserContext);
 
@@ -33,7 +35,7 @@ const ChannelPage = (props) => {
 
   useEffect(() => {
     getChannelById(id);
-    getScheduleForChannel(id);
+    //getScheduleForChannel(id);
   }, []);
 
   // only fires when startdate changes.
@@ -46,14 +48,6 @@ const ChannelPage = (props) => {
   }, [startDate]);
 
   const selectFavorite = () => {
-    if (isFavorite) {
-      setIsFavorite(false);
-      return;
-    }
-    setIsFavorite(true);
-
-    console.log(user);
-
     let favariteChannel = {
       channelId: id,
       channelName: channel.channel.name,
@@ -61,40 +55,48 @@ const ChannelPage = (props) => {
     };
 
     saveFavoriteChannel(favariteChannel);
+    alert("Kanal sparad som favorit");
   };
+
   return (
-    <>
+    <div className={styles.channelwrapper}>
       {channel && (
-        <div>
-          <h1> {channel.channel.name} </h1>
-          <p> {channel.channel.tagline} </p>
-          {user && (
-            <FontAwesomeIcon
-              size="3x"
-              icon={faHeart}
-              style={{ color: isFavorite ? "black" : "grey" }}
-              onClick={selectFavorite}
-            />
-          )}
+        <div className={styles.channelInfo}>
+          <div className={styles.content}>
+            <div className={styles.imgContainer}>
+              <img src={channel.channel.image} />
+            </div>
+            <div className={styles.info}>
+              <h1> {channel.channel.name} </h1>
+              <p> {channel.channel.tagline} </p>
+            </div>
+            {user && (
+              <FontAwesomeIcon
+                className={styles.icon}
+                size="3x"
+                icon={faHeart}
+                onClick={selectFavorite}
+              />
+            )}
+          </div>
         </div>
       )}
-      <div>
-        <h1> Dagens sändningar </h1>
-      </div>
+      <div className={styles.controller}>
+        <button onClick={() => getScheduleForChannel(id)}>
+          Visa dagens sändningar
+        </button>
 
-      <h1>
-        Filtrera på datum:
+
         <DatePicker
+          className={styles.datepicker}
           placeholderText="Filtrera på datum"
           selected={startDate}
           onChange={(date) => setStartDate(date)}
         />
-      </h1>
-      <button onClick={() => getScheduleForChannel(id)}>
-        Dagens sändningar
-      </button>
+      </div>
+
       {schedule && <Schedule schedule={schedule} />}
-    </>
+    </div>
   );
 };
 

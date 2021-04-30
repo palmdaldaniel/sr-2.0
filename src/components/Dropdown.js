@@ -15,11 +15,9 @@ const { logoutUser, user }  = useContext(UserContext)
 
   return (
     <div className={styles.DropdownContainer}>
-      <Link to="/" onClick={toggleMenu}> Hem </Link>
+      <Link to="/" onClick={toggleMenu}> Kanaler </Link>
       <Link to="/programs" onClick={toggleMenu}> Program </Link>
       <Link to="/favorites" onClick={toggleMenu}> Favoriter </Link>
-
-       
       {user ?  <Link to="/" onClick={handleClick}  > Logga ut </Link> 
             : 
       <Link to="/login" onClick={toggleMenu}> Logga in</Link>

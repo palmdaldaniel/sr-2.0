@@ -4,8 +4,9 @@ import { UserContext } from "../contexts/UserProvider";
 import { Route, Redirect } from "react-router-dom";
 
 const ProtectedRoute = ({ component: Component, ...rest }) => {
-  const { isAuth } = useContext(UserContext);
- 
+ const { isAuth } = useContext(UserContext);
+
+
   return ( <Route {...rest} render={
     props => {
       if (isAuth) {
