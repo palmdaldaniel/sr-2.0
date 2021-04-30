@@ -3,7 +3,7 @@ import styles from "./css/Program.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import { UserContext } from "../contexts/UserProvider";
 import {useLocation} from 'react-router-dom'
 
@@ -15,17 +15,7 @@ const Program = (props) => {
   const { name, description, broadcastinfo } = props.data;
 
   const location = useLocation();
-
-  const [isFavorite, setIsFavorite] = useState(false);
-
-  const toggleFavorite = () => {
-    if (isFavorite) {
-      setIsFavorite(false);
-      return;
-    }
-
-    setIsFavorite(true);
-  };
+  
 
   const saveFavorite  = (program, userid) => {
 

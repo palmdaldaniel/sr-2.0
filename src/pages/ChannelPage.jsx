@@ -15,8 +15,6 @@ import styles from "./css/ChannelPage.module.css";
 
 const ChannelPage = (props) => {
   const [startDate, setStartDate] = useState(null);
-  // const [isFavorite, setIsFavorite] = useState(true);
-
   const { user, saveFavoriteChannel } = useContext(UserContext);
 
   const {
@@ -27,9 +25,8 @@ const ChannelPage = (props) => {
     programsForChannel,
     channel,
     schedule,
+    setSchedule
   } = useContext(RadioContext);
-
-  console.log(programsForChannel);
 
   const { id } = props.match.params;
   const { pathname } = useLocation();
@@ -42,6 +39,11 @@ const ChannelPage = (props) => {
     getChannelById(id);
     getScheduleForChannel(id);
     getAllProgramsForChannel(id);
+
+    return () => {
+      setSchedule(null)
+    }
+
   }, []);
 
   // only fires when startdate changes.
@@ -70,7 +72,7 @@ const ChannelPage = (props) => {
         <div className={styles.channelInfo}>
           <div className={styles.content}>
             <div className={styles.imgContainer}>
-              <img src={channel.channel.image} />
+              <img src={channel.channel.image} alt='logotype'/>
             </div>
             <div className={styles.info}>
               <h1> {channel.channel.name} </h1>

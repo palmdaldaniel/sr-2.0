@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useHistory, Link } from "react-router-dom";
 import { UserContext } from "../contexts/UserProvider";
 import useForm from "../hooks/useForm.js";
@@ -6,20 +6,19 @@ import styles from "./css/Form.module.css";
 
 const LoginPage = () => {
   const history = useHistory();
-  const { loginUser, errorMessage, setErrorMessage, status, setStatus } = useContext(UserContext);
+  const { loginUser, errorMessage, setErrorMessage, status } = useContext(
+    UserContext
+  );
   const [values, handleChange] = useForm({ email: "", password: "" });
   console.log(errorMessage);
 
+  useEffect(() => {
+    if (status === 200) {
+      history.push("/");
 
-
- useEffect(() => {
-  if(status === 200) {
-    history.push('/')
-    //setStatus(404)
-    setErrorMessage(undefined)
-  } 
-
-  }, [status])
+      setErrorMessage(undefined);
+    }
+  }, [status]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -27,22 +26,16 @@ const LoginPage = () => {
       email: values.email,
       password: values.password,
     };
- 
+
     loginUser(userInfo);
-   
-    // you need to reset valyes after log in
   };
-
-
-
 
   return (
     <div className={styles.formWrapper}>
       <div className={styles.formContainer}>
         <form onSubmit={handleSubmit}>
+          <p> {errorMessage} </p>
 
-          <p>  {errorMessage} </p>
-        
           <input
             name="email"
             value={values.email}

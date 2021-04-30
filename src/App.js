@@ -4,9 +4,8 @@ import ChannelPage from "./pages/ChannelPage";
 import RadioProvider from "./contexts/RadioProvider";
 import UserProvider from "./contexts/UserProvider";
 
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { useState, useContext } from "react";
-import { UserContext } from "./contexts/UserProvider";
+import { BrowserRouter, Route} from "react-router-dom";
+
 
 import ProgramsPage from "./pages/ProgramsPage";
 import Navbar from "./components/Navbar";

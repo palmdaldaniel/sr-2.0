@@ -12,7 +12,7 @@ const FavoriteChannelBroadCast = ({ schedule }) => {
           <div className={styles.schedule}  key={i}>
             <h3> {s.program.name} </h3>
             <p>{s.description}</p>
-            <p> Från {s.starttimeutc.slice(10, 16)} - till {s.endtimeutc.slice(10, 16)}  </p>
+            <p> <span>Från</span> {s.starttimeutc.slice(10, 16)} - <span>Till</span> {s.endtimeutc.slice(10, 16)}  </p>
             
           </div>
         ))}

@@ -4,20 +4,14 @@ import { UserContext } from "../contexts/UserProvider";
 import { RadioContext } from "../contexts/RadioProvider";
 import Channels from "../components/channels";
 import ProgramsList from "../components/ProgramsList";
-import Schedule from "../components/Schedule";
+
 import FavoriteChannelBroadCast from "../components/FavoriteChannelBroadcast";
 
 import styles from "./css/FavoritePage.module.css";
 
 const Favorites = () => {
-  const [filteredFavoriteChannels, setFilteredFavoriteChannels] = useState(
-    null
-  );
-  const [filteredFavoritePrograms, setFilteredFavoritePrograms] = useState(
-    null
-  );
-
-  const [newSchedule, setNewSchedule] = useState(null);
+  const [filteredFavoriteChannels, setFilteredFavoriteChannels] = useState(null);
+  const [filteredFavoritePrograms, setFilteredFavoritePrograms] = useState(null );
 
   const {
     user,
@@ -73,7 +67,6 @@ const Favorites = () => {
         favoriteProgramsId.includes(program.id)
       );
 
-      console.log("inside filterPrograms", favoriteFilteredPrograms);
       setFilteredFavoritePrograms(favoriteFilteredPrograms);
     }
   };
@@ -98,7 +91,6 @@ const Favorites = () => {
             )}
           </div>
 
-        
           <div className={styles.programlistWrapper}>
             <ProgramsList programs={filteredFavoritePrograms} />
           </div>

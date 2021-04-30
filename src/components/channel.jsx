@@ -1,13 +1,12 @@
 import styles from "./css/channel.module.css";
 import { useHistory, useLocation } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { RadioContext } from "../contexts/RadioProvider";
-import Schedule from "./Schedule";
 
 const Channel = ({ channel }) => {
   const history = useHistory();
   const location = useLocation();
-  const { getScheduleForChannel, schedule } = useContext(RadioContext);
+  const { getScheduleForChannel } = useContext(RadioContext);
 
   const handleClick = (channelId) => {
     if (location.pathname === "/favorites") {
@@ -27,7 +26,7 @@ const Channel = ({ channel }) => {
     >
       <div className={styles.info}>
         <div className={styles.imgContainer}>
-          <img src={channel.image} className={styles.image}></img>
+          <img src={channel.image} className={styles.image} alt="Logotyp" />
         </div>
         <div className={styles.headerwrapper}>
         <h3> {channel.name} </h3>

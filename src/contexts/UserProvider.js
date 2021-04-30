@@ -6,7 +6,6 @@ const UserProvider = (props) => {
   const [user, setUser] = useState(undefined);
   const [isAuth, setIsAuth] = useState(false);
 
-  // kom ihåg att resetta den här efter varje gång.
   const [errorMessage, setErrorMessage] = useState(undefined);
   const [status, setStatus] = useState(404);
 
@@ -46,10 +45,8 @@ const UserProvider = (props) => {
       userToLogin = await userToLogin.json();
       setStatus(200);
       setUser(userToLogin);
-      
+
       setIsAuth(true);
-  
-      
     }
   };
 
@@ -60,7 +57,6 @@ const UserProvider = (props) => {
     // set user back to undefiend after user is logged out
     setUser(undefined);
     setIsAuth(false);
-    
   };
 
   const registerUser = async (user) => {
@@ -74,41 +70,33 @@ const UserProvider = (props) => {
     if (userToRegister.status === 404) {
       userToRegister = await userToRegister.json();
       // set this message to a useState
-      console.log(userToRegister);
       setErrorMessage(userToRegister.failed);
     } else if (userToRegister.status === 200) {
       userToRegister = await userToRegister.json();
       // if registration i complete, the user will be redirected to the login page
       setStatus(200);
-      console.log(userToRegister);
     }
   };
 
   //  functionality for users favorite pograms and channels
 
   const getFavoriteChannels = async (userid) => {
-    console.log(" get favoroite channels ", userid);
     let favoriteChannelsToGet = await fetch(
       `/api/v1/favorites/channels/${userid}`
     );
     favoriteChannelsToGet = await favoriteChannelsToGet.json();
-    console.log("data 2:", favoriteChannelsToGet);
     setfavoriteChannels(favoriteChannelsToGet);
   };
 
   const getFavoritePrograms = async (userid) => {
-    console.log("get favorite programs: ", userid);
     let favoriteProgramsToGet = await fetch(
       `/api/v1/favorites/programs/${userid}`
     );
     favoriteProgramsToGet = await favoriteProgramsToGet.json();
-    console.log("data: ", favoriteProgramsToGet);
     setFavoritePrograms(favoriteProgramsToGet);
   };
 
   const saveFavoriteChannel = async (channel) => {
-    console.log(channel);
-
     let channelToSave = await fetch("/api/v1/favorites/channels", {
       method: "POST",
       headers: {

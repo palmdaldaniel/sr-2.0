@@ -45,9 +45,6 @@ const RadioProvider = (props) => {
     let programsToGet = await fetch("/api/v1/programs");
     programsToGet = await programsToGet.json();
 
-    //setPrograms(programsToGet);
-    // load programs
-
     const { programs } = programsToGet;
     setPrograms(programs);
   };
