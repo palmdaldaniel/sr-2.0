@@ -77,6 +77,9 @@ h3, .ProgramsChannel p, .ProgramsChannel h3 {
   background: rgba(0, 0, 0, 0.084);
 }
 
+.secondWrapper h2 {
+  margin-left: 10px;
+}
 
 
 @media only screen and (min-width: 600px) {
@@ -84,9 +87,7 @@ h3, .ProgramsChannel p, .ProgramsChannel h3 {
     .secondWrapper {
       display: flex;
     }
-    .secondWrapper h2 {
-      margin-left: 10px;
-    }
+   
 
 
 

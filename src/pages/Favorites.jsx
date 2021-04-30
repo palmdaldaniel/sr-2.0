@@ -25,7 +25,18 @@ const Favorites = () => {
     getFavoritePrograms,
   } = useContext(UserContext);
 
-  const { channels, programs, schedule } = useContext(RadioContext);
+  const { channels, programs, schedule, setSchedule } = useContext(RadioContext);
+
+
+  useEffect(() => {
+
+
+      // when component  unmounts  - clear the schedule that is active
+    return () => {
+      setSchedule(null)
+    }
+
+  },[])
 
  
 

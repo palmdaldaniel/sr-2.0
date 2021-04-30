@@ -108,14 +108,12 @@ const ChannelPage = (props) => {
         </div>
 
         <div>
-        <h2>Program</h2>
+          <h2>Program</h2>
 
-
-        {programsForChannel && (
-          <ProgramsChannel programsForChannel={programsForChannel} />
-        )}
+          {programsForChannel && (
+            <ProgramsChannel programsForChannel={programsForChannel} />
+          )}
         </div>
-
       </div>
     </div>
   );
