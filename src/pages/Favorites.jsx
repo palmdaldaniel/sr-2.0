@@ -7,6 +7,8 @@ import ProgramsList from "../components/ProgramsList";
 import Schedule from "../components/Schedule";
 import FavoriteChannelBroadCast from "../components/FavoriteChannelBroadcast";
 
+import styles from "./css/FavoritePage.module.css";
+
 const Favorites = () => {
   const [filteredFavoriteChannels, setFilteredFavoriteChannels] = useState(
     null
@@ -15,7 +17,7 @@ const Favorites = () => {
     null
   );
 
-  const [newSchedule, setNewSchedule] = useState(null)
+  const [newSchedule, setNewSchedule] = useState(null);
 
   const {
     user,
@@ -25,21 +27,16 @@ const Favorites = () => {
     getFavoritePrograms,
   } = useContext(UserContext);
 
-  const { channels, programs, schedule, setSchedule } = useContext(RadioContext);
-
+  const { channels, programs, schedule, setSchedule } = useContext(
+    RadioContext
+  );
 
   useEffect(() => {
-
-
-      // when component  unmounts  - clear the schedule that is active
+    // when component  unmounts  - clear the schedule that is active
     return () => {
-      setSchedule(null)
-    }
-
-  },[])
-
- 
-
+      setSchedule(null);
+    };
+  }, []);
 
   useEffect(() => {
     if (user) {
@@ -71,35 +68,41 @@ const Favorites = () => {
       (program) => program.programid
     );
 
-      if(programs) {
-        let favoriteFilteredPrograms = programs.filter((program) =>
-          favoriteProgramsId.includes(program.id)
-        );
+    if (programs) {
+      let favoriteFilteredPrograms = programs.filter((program) =>
+        favoriteProgramsId.includes(program.id)
+      );
 
-        console.log("inside filterPrograms", favoriteFilteredPrograms);
-        setFilteredFavoritePrograms(favoriteFilteredPrograms);
-      }
-
+      console.log("inside filterPrograms", favoriteFilteredPrograms);
+      setFilteredFavoritePrograms(favoriteFilteredPrograms);
+    }
   };
 
   return (
     <div>
       {user ? (
-        <div>
-          <h1> Welcome {user.username} </h1>
-          FavoritKanaler
-          <Channels channels={filteredFavoriteChannels} />
+        <div className={styles.favoritepage}>
+          <div className={styles.favoritePageInfo}>
+            <h1> Välkommen {user.username} </h1>
+            <h3> Här kan du se vilka kanaler/program som är dina favoriter</h3>
+          </div>
 
-          {/* jag vill bara att den här ska ladda när jag trycker på en kanal */}
+          <div className={styles.channleInfoWrapper}>
+            <div className={styles.channels}>
+              <Channels channels={filteredFavoriteChannels} />
+            </div>
+            {schedule && (
+              <div className={styles.broadcast}>
+                <FavoriteChannelBroadCast schedule={schedule} />
+              </div>
+            )}
+          </div>
 
-          <FavoriteChannelBroadCast  schedule={schedule}  />
-         
         
-
-          Favoritprogram
-          <ProgramsList programs={filteredFavoritePrograms} />
-         
-                </div>
+          <div className={styles.programlistWrapper}>
+            <ProgramsList programs={filteredFavoritePrograms} />
+          </div>
+        </div>
       ) : (
         <h1> Pls log in to see your favorites </h1>
       )}
