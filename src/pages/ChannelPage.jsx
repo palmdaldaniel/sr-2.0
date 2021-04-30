@@ -9,6 +9,7 @@ import { useLocation } from "react-router-dom";
 
 import DatePicker from "react-datepicker";
 import Schedule from "../components/Schedule";
+import ProgramsChannel from '../components/ProgramsChannel'
 
 import styles from "./css/ChannelPage.module.css";
 
@@ -21,10 +22,14 @@ const ChannelPage = (props) => {
   const {
     getChannelById,
     getScheduleForChannel,
+    getAllProgramsForChannel,
+    getScheduleByDate,
+    programsForChannel,
     channel,
     schedule,
-    getScheduleByDate,
   } = useContext(RadioContext);
+
+  console.log(programsForChannel);
 
   const { id } = props.match.params;
   const { pathname } = useLocation();
@@ -36,6 +41,7 @@ const ChannelPage = (props) => {
   useEffect(() => {
     getChannelById(id);
     //getScheduleForChannel(id);
+    getAllProgramsForChannel(id)
   }, []);
 
   // only fires when startdate changes.
@@ -96,6 +102,7 @@ const ChannelPage = (props) => {
       </div>
 
       {schedule && <Schedule schedule={schedule} />}
+      {programsForChannel && <ProgramsChannel  programsForChannel={programsForChannel} />}
     </div>
   );
 };

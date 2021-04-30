@@ -1,4 +1,5 @@
 import Channels from "../components/channels";
+import styles from './css/HomePage.module.css'
 
 import { useContext, useEffect } from "react";
 import { useLocation } from "react-router-dom";
@@ -19,7 +20,7 @@ const HomePage = () => {
       
     }
 
-  },[status])
+  },[status]) 
 
 
   // on pageload - scroll to top
@@ -29,8 +30,9 @@ const HomePage = () => {
 
   return (
    
-    <div className="homepageWrapper">
+    <div className={styles.hompage}>
     { status === 200 &&
+    
       <UserFeedback   username={user.username}/>
     }
         <h1 style={{textAlign: 'center', margin: '20px 0' }}> Kanaler </h1>

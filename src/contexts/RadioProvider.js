@@ -8,6 +8,7 @@ const RadioProvider = (props) => {
   const [channel, setChannel] = useState(null);
   const [schedule, setSchedule] = useState(null);
   const [programs, setPrograms] = useState(null);
+  const [programsForChannel, setProgramsForChannel] = useState(null)
   
 
   useEffect(() => {
@@ -51,6 +52,14 @@ const RadioProvider = (props) => {
     setPrograms(programs);
   };
 
+  const getAllProgramsForChannel = async (channelId) => {
+    let allPrograms = await fetch(`/api/v1/programs/${channelId}`);
+    allPrograms = await allPrograms.json();
+    // console.log(allPrograms);
+    // console.log(allPrograms.programs);
+    setProgramsForChannel(allPrograms.programs);
+  };
+
   const filterByCategory = async (id) => {
     let filteredPrograms = await fetch(`/api/v1/categories/${id}`);
     filteredPrograms = await filteredPrograms.json();
@@ -74,9 +83,11 @@ const RadioProvider = (props) => {
     categories,
     schedule,
     programs,
+    programsForChannel,
     setSchedule,
     getChannelById,
     getScheduleForChannel,
+    getAllProgramsForChannel,
     filterByCategory,
     getAllPrograms,
     getScheduleByDate,

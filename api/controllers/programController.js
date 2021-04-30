@@ -13,6 +13,15 @@ const getAllPrograms = async (req, res) => {
 }
 
 
+const getProgramsForChannel = async (req, res) => {
+    let programs = await fetch(`http://api.sr.se/api/v2/programs/index?channelid=${req.params.channelId}&${json}&${paginationFalse}`); 
+    programs = await programs.json(); 
+    res.json(programs); 
+  }
+
+
 module.exports = {
-    getAllPrograms
+    getAllPrograms,
+    getProgramsForChannel
+    
 }

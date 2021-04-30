@@ -70,6 +70,13 @@ h3 {
   background: rgba(0, 0, 0, 0.084);
 }
 
+
+.ProgramsChannel {
+  overflow: scroll;
+
+  height: 50vh;
+}
+
 @media only screen and (min-width: 600px) {
   .channelInfo {
     display: flex;

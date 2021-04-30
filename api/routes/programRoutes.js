@@ -6,7 +6,7 @@ const programController = require('../controllers/programController');
 
 
 router.get('', programController.getAllPrograms)
-// Post routes setup goes underneath here...
+router.get("/:channelId", programController.getProgramsForChannel); 
 
 
 module.exports = router;
