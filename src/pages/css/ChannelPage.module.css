@@ -1,16 +1,20 @@
 .channelwrapper {
   margin: 50px auto;
-  max-width: 800px;
+  max-width: 900px;
 }
 
 .content {
   margin: 30px;
 }
 
-.schedule {
-  width: 400px;
+.schedule, .ProgramsChannel {
+ max-width: 430px;
   margin: 10px;
+  overflow: scroll;
+  height: 50vh;
 }
+
+
 
 .imgContainer {
   width: 300px;
@@ -44,16 +48,18 @@ p {
 }
 
 .controller {
+  margin: 10px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 
 .controller button {
+  
   margin-bottom: 10px;
 }
 
-.scheduleInfo {
+.scheduleInfo, .programInfo {
   margin-bottom: 2vh;
 
   border-left: 1px solid rgb(0, 0, 0, 0.084);
@@ -61,23 +67,30 @@ p {
 }
 
 .scheduleInfo p,.scheduleInfo
-h3 {
+h3, .ProgramsChannel p, .ProgramsChannel h3 {
+  
   padding: 5px;
 }
 
-.scheduleInfo:hover {
+.scheduleInfo:hover, .programInfo:hover {
   border-radius: 5px;
   background: rgba(0, 0, 0, 0.084);
 }
 
 
-.ProgramsChannel {
-  overflow: scroll;
-
-  height: 50vh;
-}
 
 @media only screen and (min-width: 600px) {
+  
+    .secondWrapper {
+      display: flex;
+    }
+    .secondWrapper h2 {
+      margin-left: 10px;
+    }
+
+
+
+
   .channelInfo {
     display: flex;
     align-items: center;

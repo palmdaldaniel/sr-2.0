@@ -55,8 +55,6 @@ const RadioProvider = (props) => {
   const getAllProgramsForChannel = async (channelId) => {
     let allPrograms = await fetch(`/api/v1/programs/${channelId}`);
     allPrograms = await allPrograms.json();
-    // console.log(allPrograms);
-    // console.log(allPrograms.programs);
     setProgramsForChannel(allPrograms.programs);
   };
 

@@ -9,13 +9,13 @@ import { useLocation } from "react-router-dom";
 
 import DatePicker from "react-datepicker";
 import Schedule from "../components/Schedule";
-import ProgramsChannel from '../components/ProgramsChannel'
+import ProgramsChannel from "../components/ProgramsChannel";
 
 import styles from "./css/ChannelPage.module.css";
 
 const ChannelPage = (props) => {
   const [startDate, setStartDate] = useState(null);
- // const [isFavorite, setIsFavorite] = useState(true);
+  // const [isFavorite, setIsFavorite] = useState(true);
 
   const { user, saveFavoriteChannel } = useContext(UserContext);
 
@@ -40,8 +40,8 @@ const ChannelPage = (props) => {
 
   useEffect(() => {
     getChannelById(id);
-    //getScheduleForChannel(id);
-    getAllProgramsForChannel(id)
+    getScheduleForChannel(id);
+    getAllProgramsForChannel(id);
   }, []);
 
   // only fires when startdate changes.
@@ -87,11 +87,11 @@ const ChannelPage = (props) => {
           </div>
         </div>
       )}
+
       <div className={styles.controller}>
         <button onClick={() => getScheduleForChannel(id)}>
           Visa dagens sändningar
         </button>
-
 
         <DatePicker
           className={styles.datepicker}
@@ -101,8 +101,22 @@ const ChannelPage = (props) => {
         />
       </div>
 
-      {schedule && <Schedule schedule={schedule} />}
-      {programsForChannel && <ProgramsChannel  programsForChannel={programsForChannel} />}
+      <div className={styles.secondWrapper}>
+        <div>
+          <h2>Sändningar</h2>
+          {schedule && <Schedule schedule={schedule} />}
+        </div>
+
+        <div>
+        <h2>Program</h2>
+
+
+        {programsForChannel && (
+          <ProgramsChannel programsForChannel={programsForChannel} />
+        )}
+        </div>
+
+      </div>
     </div>
   );
 };
