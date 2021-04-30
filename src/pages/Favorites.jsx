@@ -9,6 +9,11 @@ import FavoriteChannelBroadCast from "../components/FavoriteChannelBroadcast";
 
 import styles from "./css/FavoritePage.module.css";
 
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import { faEllipsisV } from "@fortawesome/free-solid-svg-icons";
+
 const Favorites = () => {
   const [filteredFavoriteChannels, setFilteredFavoriteChannels] = useState(null);
   const [filteredFavoritePrograms, setFilteredFavoritePrograms] = useState(null );
@@ -71,6 +76,10 @@ const Favorites = () => {
     }
   };
 
+  const editUser = () => {
+    console.log('click');
+  } 
+
   return (
     <div>
       {user ? (
@@ -78,6 +87,7 @@ const Favorites = () => {
           <div className={styles.favoritePageInfo}>
             <h1> Välkommen {user.username} </h1>
             <h3> Här kan du se vilka kanaler/program som är dina favoriter</h3>
+            <FontAwesomeIcon icon={faEllipsisV} onClick={editUser}/>
           </div>
 
           <div className={styles.channleInfoWrapper}>
