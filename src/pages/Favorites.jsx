@@ -11,7 +11,6 @@ import styles from "./css/FavoritePage.module.css";
 
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 import { faEllipsisV } from "@fortawesome/free-solid-svg-icons";
 
 const Favorites = () => {

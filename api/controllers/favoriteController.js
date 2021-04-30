@@ -24,12 +24,10 @@ const getFavoriteChannels = async (req, res) => {
   });
 };
 
-
 const getFavoritePrograms = (req, res) => {
+  console.log("req: ", req.params);
 
-  console.log('req: ', req.params);
-  
-  const { id } = req.params
+  const { id } = req.params;
   let query = /* SQL */ `SELECT * FROM programs WHERE userid = $userid`;
   let params = {
     $userid: id,
@@ -42,16 +40,10 @@ const getFavoritePrograms = (req, res) => {
     }
     res.json(favoritePrograms);
   });
-
-
- 
-
-}
-
+};
 
 const saveFavoriteChannel = async (req, res) => {
   const { channelId, channelName, userId } = req.body;
-  
 
   let query = /* SQL */ `INSERT INTO channels (channelname, userid, channelid)
                           VALUES ($channelname, $userid, $channelid)`;
@@ -71,35 +63,48 @@ const saveFavoriteChannel = async (req, res) => {
   });
 };
 
-
 const saveFavoriteProgram = async (req, res) => {
+  const { programname, userid, programid } = req.body;
 
-  const { programname, userid, programid  } = req.body
-  
-    let query = /* SQL */ `INSERT INTO programs (programname, userid, programid)
-    VALUES ($programname, $userid, $programid)`
+  let query = /* SQL */ `INSERT INTO programs (programname, userid, programid)
+    VALUES ($programname, $userid, $programid)`;
 
-    let params = {
-      $programname: programname,
-      $userid: userid,
-      $programid: programid
-
-    }
-
-    db.run(query, params, function (err) {
-      if (err) {
-        console.log(err);
-        res.status(404).json({ err: err });
-        return;
-      }
-      res.json({ success: "Saved program succesfully" });
-    });
+  let params = {
+    $programname: programname,
+    $userid: userid,
+    $programid: programid,
   };
-  
+
+  db.run(query, params, function (err) {
+    if (err) {
+      console.log(err);
+      res.status(404).json({ err: err });
+      return;
+    }
+    res.json({ success: "Saved program succesfully" });
+  });
+};
+
+const deleteChannel = async (req, res) => {
+  console.log(req.params);
+
+  let query = /*sql*/ `DELETE FROM channels WHERE userid = $userid
+  AND channelid = $channelid `;
+
+  let params = { $userid: req.body.id, $channelid: req.params.id };
+
+  db.run(query, params, function (err) {
+    res.json({
+      success: "Favorite channel has been deleted",
+      changes: this.changes,
+    });
+  });
+};
 
 module.exports = {
   getFavoriteChannels,
   getFavoritePrograms,
   saveFavoriteChannel,
-  saveFavoriteProgram
+  saveFavoriteProgram,
+  deleteChannel,
 };
