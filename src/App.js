@@ -4,8 +4,7 @@ import ChannelPage from "./pages/ChannelPage";
 import RadioProvider from "./contexts/RadioProvider";
 import UserProvider from "./contexts/UserProvider";
 
-import { BrowserRouter, Route} from "react-router-dom";
-
+import { BrowserRouter, Route } from "react-router-dom";
 
 import ProgramsPage from "./pages/ProgramsPage";
 import Navbar from "./components/Navbar";
@@ -13,7 +12,6 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import Favorites from "./pages/Favorites";
 import ProtectedRoute from "./components/ProtectedRoute";
-
 
 function App() {
   return (
@@ -29,8 +27,6 @@ function App() {
             <Route exact path="/login" component={LoginPage} />
             <Route exact path="/register" component={RegisterPage} />
             <ProtectedRoute exact path="/favorites" component={Favorites} />
-
-            {/*  <Route exact path="/favorites" component={Favorites} /> */}
           </BrowserRouter>
         </RadioProvider>
       </UserProvider>

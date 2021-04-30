@@ -20,6 +20,13 @@ const LoginPage = () => {
     }
   }, [status]);
 
+  useEffect(() => {
+
+    return () => {
+      setErrorMessage(undefined)
+    }
+
+  },[])
   const handleSubmit = (e) => {
     e.preventDefault();
     let userInfo = {

@@ -9,7 +9,6 @@ display: flex;
 }
 
 .userfeedback {
-    
     background: white;
 }
 
@@ -18,17 +17,15 @@ display: flex;
     text-align: center;
 }
 
-
-li {
+.paginationContent li {
     font-size: x-large;
     list-style: none;
     padding: 5px 15px;
     margin: 10px;
     cursor: pointer;
-
 }
 
-li:hover {
+.paginationContent li:hover {
     border-radius: 5px;
     background: rgba(0, 0, 0, 0.071);
 

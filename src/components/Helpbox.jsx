@@ -2,7 +2,7 @@ const Helpbox = () => {
   return (
     <div>
       <p> Ex på giltig mailadress: daniel@gmail.com</p>
-      <p>Ditt ska lösenord ska innehåla:</p>
+      <p>Ditt ska lösenord ska innehålla:</p>
       <ul>
         <li>Minst 8 tecken</li>
         <li> Små och stora bokstäver</li>

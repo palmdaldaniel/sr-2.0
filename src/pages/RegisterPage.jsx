@@ -20,6 +20,13 @@ const RegisterPage = () => {
   console.log(status);
 
   useEffect(() => {
+
+    return () => {
+      setErrorMessage(undefined);
+    };
+  }, []);
+
+  useEffect(() => {
     if (status === 200) {
       history.push("/login");
       setStatus(404);
@@ -33,10 +40,6 @@ const RegisterPage = () => {
     username: "",
   });
 
-  // different feedbackMessages is shown depending on what the user tries to submit.
-
-  // might need to do some checks here.
-
   const handleSubmit = (e) => {
     e.preventDefault();
     let userInfo = {
@@ -44,32 +47,33 @@ const RegisterPage = () => {
       password: values.password,
       username: values.username,
     };
+
+    // info is sent to validator function before it goes to db
     validateUser(userInfo);
   };
 
   // check if these are good or bad credintals
   const validateUser = (user) => {
-
-     // (?=.*[a-z])	The string must contain at least 1 lowercase alphabetical character
+    // (?=.*[a-z])	The string must contain at least 1 lowercase alphabetical character
     // (?=.*[A-Z])	The string must contain at least 1 uppercase alphabetical character
     // (?=.*[0-9])	The string must contain at least 1 numeric character
     // (?=.*[!@#$%^&*])	The string must contain at least one special character, but we are escaping reserved RegEx characters to avoid conflict
     // (?=.{8,})	The string must be eight characters or longer
-    
+
     const strongPassword = new RegExp(
       "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})"
     );
     const passwordIsValid = strongPassword.test(user.password);
 
-      // check for basic emailpatterns. valid email could be daniel@gmail.com
-      // test will show false if you submit ex: daniel@@gmal.com
-
+    // check for basic emailpatterns. valid email could be daniel@gmail.com
+    // test will show false if you submit ex: daniel@@gmal.com
     const emailIsValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(user.email);
 
     if (passwordIsValid && emailIsValid) {
       registerUser(user);
     } else {
       setShow(true);
+      setErrorMessage(undefined);
       setTimeout(hideFeedbackMessage, 6500);
     }
   };
@@ -95,6 +99,7 @@ const RegisterPage = () => {
             values={values.email}
             placeholder="Email..."
             onChange={handleChange}
+            required
           />
           <input
             name="password"
@@ -112,11 +117,3 @@ const RegisterPage = () => {
 
 export default RegisterPage;
 
-/* 
-<ul>
-<p>Ditt lösenord ska innehålla:</p>
-<li> Minst 8 tecken långt </li>
-<li> Innehålla ett specieltecken </li>
-<li> Innehålla en siffra </li>
-<li> Stora och små bokstäver </li>
-</ul> */
