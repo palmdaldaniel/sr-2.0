@@ -8,6 +8,7 @@ const RadioProvider = (props) => {
   const [channel, setChannel] = useState(null);
   const [schedule, setSchedule] = useState(null);
   const [programs, setPrograms] = useState(null);
+  const [programsToFavorite, setProgramsToFavorite] = useState(null)
   const [programsForChannel, setProgramsForChannel] = useState(null)
   
 
@@ -47,6 +48,7 @@ const RadioProvider = (props) => {
 
     const { programs } = programsToGet;
     setPrograms(programs);
+    setProgramsToFavorite(programs)
   };
 
   const getAllProgramsForChannel = async (channelId) => {
@@ -79,6 +81,7 @@ const RadioProvider = (props) => {
     schedule,
     programs,
     programsForChannel,
+    programsToFavorite,
     setSchedule,
     getChannelById,
     getScheduleForChannel,

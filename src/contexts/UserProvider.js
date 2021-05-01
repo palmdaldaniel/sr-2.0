@@ -141,7 +141,7 @@ const UserProvider = (props) => {
       body: JSON.stringify(updatedUser)
     })
     userToUpdate = await userToUpdate.json()
-    //setUser(userToUpdate.newUser);
+    
     
    
   }

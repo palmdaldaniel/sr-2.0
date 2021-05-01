@@ -48,6 +48,7 @@ const Channel = ({ channel }) => {
     size="lg"
     icon={faTrashAlt}
     onClick={() => deleteFavoriteChannel(channel.id, user.userid)}
+    style={{cursor: 'pointer'}}
     />
     )}
           </div>

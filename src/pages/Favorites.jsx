@@ -31,7 +31,7 @@ const Favorites = () => {
     getFavoritePrograms,
   } = useContext(UserContext);
 
-  const { channels, programs, schedule, setSchedule } = useContext(
+  const { channels, programs, schedule, setSchedule, programsToFavorite } = useContext(
     RadioContext
   );
 
@@ -72,8 +72,8 @@ const Favorites = () => {
       (program) => program.programid
     );
 
-    if (programs) {
-      let favoriteFilteredPrograms = programs.filter((program) =>
+    if (programsToFavorite) {
+      let favoriteFilteredPrograms = programsToFavorite.filter((program) =>
         favoriteProgramsId.includes(program.id)
       );
 
