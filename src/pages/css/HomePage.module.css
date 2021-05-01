@@ -2,6 +2,7 @@
     display: flex;
     justify-content: center;
     flex-direction: row;
+    overflow: hidden;
 }
 
 .paginationContent {
@@ -21,7 +22,7 @@ display: flex;
     font-size: x-large;
     list-style: none;
     padding: 5px 15px;
-    margin: 10px;
+    margin: 2px;
     cursor: pointer;
 }
 
