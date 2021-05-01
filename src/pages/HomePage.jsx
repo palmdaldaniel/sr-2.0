@@ -34,7 +34,7 @@ const HomePage = () => {
     { status === 200 &&
       <UserFeedback   username={user.username}/>
     }
-        <h1 style={{textAlign: 'center', margin: '20px 0' }}> Kanaler </h1>
+        <h1 style={{textAlign: 'center', margin: '20px' }}> Kanaler </h1>
       <Channels channels={channels} />
     </div>
   
