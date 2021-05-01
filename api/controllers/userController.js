@@ -39,7 +39,7 @@ const login = (req, res) => {
         userid: user.userid,
       });
     }
-    //delete passwaord before session starts
+    
   });
 };
 
@@ -49,15 +49,13 @@ const logout = (req, res) => {
 };
 
 const registerUser = (req, res) => {
-
   const { email, username, password } = req.body;
 
   // check if password is strong.
   const passwordIsStrong = utils.passwordValidator(password);
 
-  // check if email is valid. 
-  const validemail = utils.emailValidator(email)
-  
+  // check if email is valid.
+  const validemail = utils.emailValidator(email);
 
   // first check if someone has that email
   let query = /* SQL */ `SELECT * from users WHERE email = $email`;
@@ -72,7 +70,7 @@ const registerUser = (req, res) => {
       res.status(404).json({ err: err, failed: "Vald mailadress finns redan" });
       return;
       // check if password is strong enough
-    } else if(!validemail) {
+    } else if (!validemail) {
       res.status(404).json({ failed: "Inte en giltig mailadress" });
       return;
     } else if (!passwordIsStrong) {
@@ -104,9 +102,28 @@ const registerUser = (req, res) => {
   }); // end of get
 };
 
+const updateUsername = (req, res) => {
+  const { newUsername, userid } = req.body;
+
+  let updatedUser = {
+    username: newUsername,
+    userid: userid,
+  };
+
+  let query = /*sql*/ `UPDATE users SET username = $username WHERE userid = $userid`;
+  let params = {
+    $username: newUsername,
+    $userid: userid,
+  };
+  db.run(query, params, function (err) {
+    res.json({ success: "Username update successful", newUser: updatedUser });
+  });
+};
+
 module.exports = {
   whoami,
   login,
   logout,
   registerUser,
+  updateUsername,
 };

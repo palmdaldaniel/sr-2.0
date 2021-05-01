@@ -4,6 +4,7 @@ export const UserContext = createContext();
 
 const UserProvider = (props) => {
   const [user, setUser] = useState(undefined);
+  console.log(user);
   const [isAuth, setIsAuth] = useState(false);
 
   const [errorMessage, setErrorMessage] = useState(undefined);
@@ -118,6 +119,33 @@ const UserProvider = (props) => {
     programToSave = await programToSave.json();
   };
 
+  const deleteFavoriteChannel = async (channelid, userid) => {
+    let channelToDelete = await fetch(`/api/v1/favorites/channels/${channelid}/${userid}`, {
+      method: 'DELETE',
+      headers: {
+        "content-type": "application/json",
+      },
+    });
+
+    channelToDelete = await channelToDelete.json()
+    getFavoriteChannels(userid)
+    
+  
+  }
+  const updateUsername = async (updatedUser) => {
+    let userToUpdate = await fetch('/api/v1/users/update', {
+      method: 'PUT',
+      headers: {
+        "content-type": "application/json"
+      },
+      body: JSON.stringify(updatedUser)
+    })
+    userToUpdate = await userToUpdate.json()
+    setUser(userToUpdate.newUser);
+    
+   
+  }
+
   const values = {
     user,
     errorMessage,
@@ -134,6 +162,9 @@ const UserProvider = (props) => {
     getFavoritePrograms,
     favoriteChannels,
     favoritePrograms,
+    deleteFavoriteChannel,
+    updateUsername,
+    whoami
   };
 
   return (

@@ -86,12 +86,12 @@ const saveFavoriteProgram = async (req, res) => {
 };
 
 const deleteChannel = async (req, res) => {
-  console.log(req.params);
+  const { id, userid } = req.params;
 
   let query = /*sql*/ `DELETE FROM channels WHERE userid = $userid
   AND channelid = $channelid `;
 
-  let params = { $userid: req.body.id, $channelid: req.params.id };
+  let params = { $userid: userid, $channelid: id };
 
   db.run(query, params, function (err) {
     res.json({

@@ -9,26 +9,35 @@ import FavoriteChannelBroadCast from "../components/FavoriteChannelBroadcast";
 
 import styles from "./css/FavoritePage.module.css";
 
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisV } from "@fortawesome/free-solid-svg-icons";
+import EdituserPopup from "../components/EdituserPopup";
+
 
 const Favorites = () => {
-  const [filteredFavoriteChannels, setFilteredFavoriteChannels] = useState(null);
-  const [filteredFavoritePrograms, setFilteredFavoritePrograms] = useState(null );
+  const [filteredFavoriteChannels, setFilteredFavoriteChannels] = useState(
+    null
+  );
+  const [filteredFavoritePrograms, setFilteredFavoritePrograms] = useState(
+    null
+  );
 
+  const [show, setShow] = useState(true)
+  console.log(show);
+  
   const {
     user,
     getFavoriteChannels,
     favoritePrograms,
     favoriteChannels,
     getFavoritePrograms,
+    
   } = useContext(UserContext);
-
+  
   const { channels, programs, schedule, setSchedule } = useContext(
     RadioContext
-  );
-
+    );
+    
   useEffect(() => {
     // when component  unmounts  - clear the schedule that is active
     return () => {
@@ -75,10 +84,6 @@ const Favorites = () => {
     }
   };
 
-  const editUser = () => {
-    console.log('click');
-  } 
-
   return (
     <div>
       {user ? (
@@ -86,7 +91,9 @@ const Favorites = () => {
           <div className={styles.favoritePageInfo}>
             <h1> Välkommen {user.username} </h1>
             <h3> Här kan du se vilka kanaler/program som är dina favoriter</h3>
-            <FontAwesomeIcon icon={faEllipsisV} onClick={editUser}/>
+            <EdituserPopup setShow={setShow} />
+
+            <FontAwesomeIcon icon={faEllipsisV} />
           </div>
 
           <div className={styles.channleInfoWrapper}>

@@ -5,6 +5,7 @@ import { RadioContext } from "../contexts/RadioProvider";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { UserContext } from "../contexts/UserProvider";
 
 
 
@@ -12,6 +13,7 @@ const Channel = ({ channel }) => {
   const history = useHistory();
   const location = useLocation();
   const { getScheduleForChannel } = useContext(RadioContext);
+  const { deleteFavoriteChannel, user } = useContext(UserContext);
 
   const handleClick = (channelId) => {
     if (location.pathname === "/favorites") {
@@ -22,9 +24,7 @@ const Channel = ({ channel }) => {
     history.push(`/channels/${channelId}`);
   };
 
-  const deleteFavorite = () => {
-    console.log('hello');
-  }
+ 
 
 
 
@@ -45,7 +45,7 @@ const Channel = ({ channel }) => {
         <div className={styles.headerwrapper}>
         <h3> {channel.name} </h3>
         </div>
-      { location.pathname === '/favorites' && <FontAwesomeIcon icon={faTrashAlt} onClick={deleteFavorite}/>  }
+      { location.pathname === '/favorites' && <FontAwesomeIcon icon={faTrashAlt} onClick={() => deleteFavoriteChannel(channel.id, user.userid)}/>  }
       </div>
     </div>
   );
