@@ -93,7 +93,7 @@ const Favorites = () => {
                 icon={faEllipsisV}
                 size="xs"
                 onClick={() => setShow(true)}
-                style={{ cursor: "pointer" }}
+                style={{ cursor: "pointer", marginLeft: '10px' }}
               />
                
             </h1>

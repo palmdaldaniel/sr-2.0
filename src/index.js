@@ -5,8 +5,6 @@ import App from './App';
 import "react-datepicker/dist/react-datepicker.css";
 
 
-
-
 ReactDOM.render(
   <React.StrictMode>
     <App />

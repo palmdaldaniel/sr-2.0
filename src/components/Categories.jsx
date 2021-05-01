@@ -32,18 +32,13 @@ const Categories = () => {
                 <p className={styles.paragraph}>{category.name}</p>
               </div>
             ))}
-
-
         </div>
       </div>
-      <div className={styles.filterinfo} >
-
-      <h5 className={styles.filtertext}>
-      
-        Valt filter: <span>{label} </span>
-      </h5>
-      <button onClick={() => clearResult()}>Rensa filter</button>
-
+      <div className={styles.filterinfo}>
+        <h5 className={styles.filtertext}>
+          Valt filter: <span>{label} </span>
+        </h5>
+        <button onClick={() => clearResult()}>Rensa filter</button>
       </div>
     </>
   );

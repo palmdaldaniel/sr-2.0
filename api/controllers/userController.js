@@ -39,7 +39,6 @@ const login = (req, res) => {
         userid: user.userid,
       });
     }
-    
   });
 };
 
@@ -103,8 +102,6 @@ const registerUser = (req, res) => {
 };
 
 const updateUsername = (req, res) => {
-
-  console.log('session: ' ,req.session);
   const { newUsername, userid } = req.body;
 
   let updatedUser = {
@@ -118,15 +115,8 @@ const updateUsername = (req, res) => {
     $userid: userid,
   };
   db.run(query, params, function (err) {
-
-    
     // updates node session the the new usernames displaysin front end when who am i is called.
-    req.session.user =  updatedUser
- 
-
-
-
-
+    req.session.user = updatedUser;
     res.json({ success: "Username update successful", newUser: updatedUser });
   });
 };

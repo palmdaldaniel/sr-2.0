@@ -20,7 +20,6 @@ function App() {
         <RadioProvider>
           <BrowserRouter>
             <Navbar />
-
             <Route exact path="/" component={HomePage} />
             <Route exact path="/channels/:id" component={ChannelPage} />
             <Route exact path="/programs" component={ProgramsPage} />

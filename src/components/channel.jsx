@@ -24,7 +24,7 @@ const Channel = ({ channel }) => {
 
   return (
     <div className={styles.channel}>
-      <div  className={styles.channelswrapper}>
+      <div className={styles.channelswrapper}>
         <div className={styles.info}>
           <div
             className={styles.imgContainer}
@@ -36,29 +36,20 @@ const Channel = ({ channel }) => {
           </div>
           <div className={styles.headerwrapper}>
             <div className={styles.channelname}>
-            <h3> {channel.name} </h3>
-
+              <h3> {channel.name} </h3>
             </div>
-
-
-
-
-{location.pathname === "/favorites" && (
-    <FontAwesomeIcon
-    size="lg"
-    icon={faTrashAlt}
-    onClick={() => deleteFavoriteChannel(channel.id, user.userid)}
-    style={{cursor: 'pointer'}}
-    />
-    )}
+            {location.pathname === "/favorites" && (
+              <FontAwesomeIcon
+                size="lg"
+                icon={faTrashAlt}
+                onClick={() => deleteFavoriteChannel(channel.id, user.userid)}
+                style={{ cursor: "pointer" }}
+              />
+            )}
           </div>
         </div>
       </div>
     </div>
-
-        
-
-
   );
 };
 

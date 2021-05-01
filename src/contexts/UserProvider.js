@@ -15,7 +15,7 @@ const UserProvider = (props) => {
 
   useEffect(() => {
     whoami();
-  }, []);
+  }, []); 
 
   const whoami = async () => {
     let loggedInUser = await fetch("/api/v1/users/whoami");
@@ -46,7 +46,6 @@ const UserProvider = (props) => {
       userToLogin = await userToLogin.json();
       setStatus(200);
       setUser(userToLogin);
-
       setIsAuth(true);
     }
   };
@@ -80,7 +79,6 @@ const UserProvider = (props) => {
   };
 
   //  functionality for users favorite pograms and channels
-
   const getFavoriteChannels = async (userid) => {
     let favoriteChannelsToGet = await fetch(
       `/api/v1/favorites/channels/${userid}`
@@ -129,8 +127,6 @@ const UserProvider = (props) => {
 
     channelToDelete = await channelToDelete.json()
     getFavoriteChannels(userid)
-    
-  
   }
   const updateUsername = async (updatedUser) => {
     let userToUpdate = await fetch('/api/v1/users/update', {
@@ -141,9 +137,6 @@ const UserProvider = (props) => {
       body: JSON.stringify(updatedUser)
     })
     userToUpdate = await userToUpdate.json()
-    
-    
-   
   }
 
   const values = {

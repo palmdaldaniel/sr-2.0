@@ -16,11 +16,9 @@ const Program = (props) => {
 
   const location = useLocation();
   
-
   const saveFavorite  = (program, userid) => {
 
-    if (location.pathname === "/favorites") {
-      
+    if (location.pathname === "/favorites") {      
       return;
     }
 
@@ -31,7 +29,6 @@ const Program = (props) => {
     }
     saveFavoriteProgram(programToSave)
     alert('Program sparat som favorit')
-
   }
 
   return (
@@ -45,7 +42,6 @@ const Program = (props) => {
       {user && (
         <div
           className={styles.icon}
-        
           onClick={() => saveFavorite(props.data, user.userid)}
         >
           <FontAwesomeIcon icon={faHeart} size="2x" />

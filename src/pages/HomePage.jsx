@@ -32,7 +32,6 @@ const HomePage = () => {
    
     <div className={styles.hompage}>
     { status === 200 &&
-    
       <UserFeedback   username={user.username}/>
     }
         <h1 style={{textAlign: 'center', margin: '20px 0' }}> Kanaler </h1>
