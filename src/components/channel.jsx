@@ -7,8 +7,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { UserContext } from "../contexts/UserProvider";
 
-
-
 const Channel = ({ channel }) => {
   const history = useHistory();
   const location = useLocation();
@@ -24,30 +22,42 @@ const Channel = ({ channel }) => {
     history.push(`/channels/${channelId}`);
   };
 
- 
-
-
-
   return (
-    <div
-      className={styles.channel}
+    <div className={styles.channel}>
+      <div  className={styles.channelswrapper}>
+        <div className={styles.info}>
+          <div
+            className={styles.imgContainer}
+            onClick={() => {
+              handleClick(channel.id);
+            }}
+          >
+            <img src={channel.image} className={styles.image} alt="Logotyp" />
+          </div>
+          <div className={styles.headerwrapper}>
+            <div className={styles.channelname}>
+            <h3> {channel.name} </h3>
 
-      className={styles.channelswrapper}
-    >
-      <div className={styles.info}>
+            </div>
 
 
-        <div className={styles.imgContainer}  onClick={() => {
-        handleClick(channel.id);
-      }}>
-          <img src={channel.image} className={styles.image} alt="Logotyp" />
+
+
+{location.pathname === "/favorites" && (
+    <FontAwesomeIcon
+    size="lg"
+    icon={faTrashAlt}
+    onClick={() => deleteFavoriteChannel(channel.id, user.userid)}
+    />
+    )}
+          </div>
         </div>
-        <div className={styles.headerwrapper}>
-        <h3> {channel.name} </h3>
-        </div>
-      { location.pathname === '/favorites' && <FontAwesomeIcon icon={faTrashAlt} onClick={() => deleteFavoriteChannel(channel.id, user.userid)}/>  }
       </div>
     </div>
+
+        
+
+
   );
 };
 

@@ -1,8 +1,9 @@
 import { useContext, useState } from "react";
+
 import { UserContext } from "../contexts/UserProvider";
 
 const EdituserPopup = ({setShow}) => {
-  const { updateUsername, user} = useContext(UserContext);
+  const { updateUsername, user, whoami} = useContext(UserContext);
   const [username, setUsername] = useState(user.username);
 
   const handleSubmit = async (e) => {
@@ -14,6 +15,8 @@ const EdituserPopup = ({setShow}) => {
     };
     await updateUsername(userToEdit);
     setUsername("");
+    await whoami()
+    setShow(false)
    
   };
 

@@ -4,7 +4,7 @@ export const UserContext = createContext();
 
 const UserProvider = (props) => {
   const [user, setUser] = useState(undefined);
-  console.log(user);
+ 
   const [isAuth, setIsAuth] = useState(false);
 
   const [errorMessage, setErrorMessage] = useState(undefined);
@@ -141,7 +141,7 @@ const UserProvider = (props) => {
       body: JSON.stringify(updatedUser)
     })
     userToUpdate = await userToUpdate.json()
-    setUser(userToUpdate.newUser);
+    //setUser(userToUpdate.newUser);
     
    
   }

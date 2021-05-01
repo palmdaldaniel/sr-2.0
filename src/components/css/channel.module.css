@@ -1,3 +1,5 @@
+
+
 .channelsContainer {
   margin: 20px auto;
 }
@@ -12,11 +14,24 @@
   cursor: pointer;
 }
 
-.headerwrapper {
-  display: none;
+.controller {
+  display: flex;
+  justify-content: space-between;
 }
 
+ .headerwrapper {
+   width: 200px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.channelname {
+  display: none;
+}
+ 
 @media only screen and (min-width: 600px) {
+
+
   .imgContainer {
     width: 100px;
 
@@ -36,7 +51,7 @@
     flex-wrap: wrap;
   }
 
-  .headerwrapper {
+  .channelname {
     display: block;
   }
 
